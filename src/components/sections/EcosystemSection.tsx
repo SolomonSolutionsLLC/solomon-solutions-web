@@ -15,7 +15,7 @@ const platforms = [
     description:
       "Biblical answers, instantly. AI-driven discipleship and counseling tool helping individuals grow through guided conversations rooted in Scripture.",
     href: "https://heartwardchat.com",
-    status: "Active",
+    status: "Coming Soon",
     iconBg: "bg-[#2d5a2d]/10",
     iconColor: "text-[#2d5a2d]",
     hoverBorder: "hover:border-[#2d5a2d]/30",
@@ -23,11 +23,11 @@ const platforms = [
   {
     icon: BookOpen,
     name: "The Wisdom Walk",
-    tagline: "Thought Leadership & Teaching",
+    tagline: "Discipleship, Counseling & Culture",
     description:
-      "Blog and teaching platform exploring the intersection of leadership, faith, and strategic thinking for those who lead.",
+      "Navigating discipleship, biblical counseling, and cultural issues with wisdom. Articles and resources for pastors and leaders engaging the hard questions.",
     href: "https://thewisdomwalk.com",
-    status: "Active",
+    status: "Coming Soon",
     iconBg: "bg-[#B8935A]/10",
     iconColor: "text-[#B8935A]",
     hoverBorder: "hover:border-[#B8935A]/30",
@@ -39,7 +39,7 @@ const platforms = [
     description:
       "iPhone app for building a structured, faithful prayer life using the ACTS framework. Simple design. Deep purpose.",
     href: "https://simplypray.io",
-    status: "Active",
+    status: "Coming Soon",
     iconBg: "bg-[#2F5C51]/10",
     iconColor: "text-[#2F5C51]",
     hoverBorder: "hover:border-[#2F5C51]/30",
@@ -51,7 +51,7 @@ const platforms = [
     description:
       "The counseling platform built for care teams. Streamline intake, scheduling, notes, and supervision in one secure workspace.",
     href: "https://hopestack.tech",
-    status: "Active",
+    status: "Coming Soon",
     iconBg: "bg-[#3B5998]/10",
     iconColor: "text-[#3B5998]",
     hoverBorder: "hover:border-[#3B5998]/30",
@@ -94,10 +94,16 @@ export default function EcosystemSection() {
                   <div className={`w-11 h-11 rounded-xl ${platform.iconBg} flex items-center justify-center transition-colors duration-300`}>
                     <platform.icon size={20} className={platform.iconColor} />
                   </div>
-                  <ArrowUpRight
-                    size={18}
-                    className="text-warm-gray-light/50 group-hover:text-charcoal/50 transition-colors duration-300"
-                  />
+                  {platform.status === "Coming Soon" ? (
+                    <span className="text-[11px] font-medium text-warm-gray-light bg-cream-dark/60 px-2.5 py-1 rounded-full">
+                      Coming Soon
+                    </span>
+                  ) : (
+                    <ArrowUpRight
+                      size={18}
+                      className="text-warm-gray-light/50 group-hover:text-charcoal/50 transition-colors duration-300"
+                    />
+                  )}
                 </div>
 
                 <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-charcoal mb-1">
