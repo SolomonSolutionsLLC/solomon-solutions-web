@@ -27,7 +27,7 @@ const platforms = [
     description:
       "Navigating discipleship, biblical counseling, and cultural issues with wisdom. Articles and resources for pastors and leaders engaging the hard questions.",
     href: "https://thewisdomwalk.com",
-    status: "Coming Soon",
+    status: "Active",
     iconBg: "bg-[#B8935A]/10",
     iconColor: "text-[#B8935A]",
     hoverBorder: "hover:border-[#B8935A]/30",
