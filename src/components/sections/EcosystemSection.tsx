@@ -13,7 +13,7 @@ const platforms = [
     name: "HeartwardChat",
     tagline: "Guided by Faith, Powered by AI",
     description:
-      "Biblical answers, instantly. AI-driven discipleship and counseling tool helping individuals grow through guided conversations rooted in Scripture.",
+      "Biblical answers, instantly. AI-guided discipleship conversations rooted in Scripture, for the questions people carry between Sundays.",
     href: "https://heartwardchat.com",
     status: "Coming Soon",
     iconBg: "bg-[#2d5a2d]/10",
@@ -25,7 +25,7 @@ const platforms = [
     name: "The Wisdom Walk",
     tagline: "Discipleship, Counseling & Culture",
     description:
-      "Navigating discipleship, biblical counseling, and cultural issues with wisdom. Articles and resources for pastors and leaders engaging the hard questions.",
+      "Articles and resources on discipleship, biblical counseling, and culture. For pastors and leaders engaging the hard questions with wisdom.",
     href: "https://thewisdomwalk.com",
     status: "Active",
     iconBg: "bg-[#B8935A]/10",
@@ -37,7 +37,7 @@ const platforms = [
     name: "Simply Pray",
     tagline: "Prayer Made Simple",
     description:
-      "iPhone app for building a structured, faithful prayer life using the ACTS framework. Simple design. Deep purpose.",
+      "Guided iPhone prayer app built on the ACTS model. Scripture-rooted, distraction-free, private by default.",
     href: "https://simplypray.io",
     status: "Coming Soon",
     iconBg: "bg-[#2F5C51]/10",
@@ -49,7 +49,7 @@ const platforms = [
     name: "HopeStack",
     tagline: "Care, Simplified",
     description:
-      "The counseling platform built for care teams. Streamline intake, scheduling, notes, and supervision in one secure workspace.",
+      "The counseling platform built for care teams. Intake, scheduling, notes, and supervision in one secure workspace.",
     href: "https://hopestack.tech",
     status: "Coming Soon",
     iconBg: "bg-[#3B5998]/10",
@@ -71,8 +71,9 @@ export default function EcosystemSection() {
               Our Platforms
             </h2>
             <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
-              A connected ecosystem of tools and resources — each serving a
-              distinct purpose, all working toward the same mission.
+              Four platforms, one mission: prayer, care, discipleship, and
+              wisdom for the local church. Each tool serves a distinct need;
+              all are built to work together.
             </p>
           </div>
         </AnimatedSection>

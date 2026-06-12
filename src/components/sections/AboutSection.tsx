@@ -19,21 +19,22 @@ export default function AboutSection() {
               </h2>
               <div className="space-y-4 text-warm-gray leading-relaxed text-[15px]">
                 <p>
-                  Solomon Solutions was born from a simple belief: the Church
-                  deserves excellent tools and thoughtful systems. Too often,
-                  ministry leaders navigate outdated technology and fragmented
-                  processes that drain energy instead of multiplying impact.
+                  Solomon Solutions was founded by Joshua Kirk, a pastor and
+                  engineer who spent years watching churches wrestle with
+                  technology that was never built for them. Outdated tools,
+                  fragmented processes, vendors who didn&apos;t understand
+                  ministry. So he started building what he couldn&apos;t find.
                 </p>
                 <p>
-                  We approach every project with the same question King Solomon
-                  asked — not for wealth or power, but for discernment.
-                  That pursuit shapes everything we build, from the simplest
-                  prayer app to the most complex church management system.
+                  We approach every project with the same request King Solomon
+                  made: not for wealth or power, but for wisdom. That pursuit
+                  shapes everything we build, from the simplest prayer app to
+                  the most complex care platform.
                 </p>
                 <p>
                   Our work sits at the intersection of biblical conviction,
-                  strategic thinking, and modern technology. When these three
-                  converge, leaders are empowered to build something that lasts.
+                  strategic thinking, and modern technology. When those three
+                  converge, leaders are freed to build something that lasts.
                 </p>
               </div>
             </div>

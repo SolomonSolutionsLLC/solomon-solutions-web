@@ -5,25 +5,25 @@ const services = [
   {
     icon: Wrench,
     label: "Build Tools",
-    title: "Digital Tools for Growth",
+    title: "Software That Serves",
     description:
-      "We create digital tools that help people think, grow, and live faithfully. From prayer apps to counseling platforms, our products serve the practical needs of ministry.",
+      "Prayer apps, counseling platforms, AI discipleship tools: purpose-built products that meet real ministry needs, not generic software bent to fit them.",
     accent: "from-gold/20 to-gold/5",
   },
   {
     icon: Cog,
     label: "Develop Systems",
-    title: "Systems That Scale",
+    title: "Systems That Hold",
     description:
-      "We design practical systems that help churches and leaders operate more effectively. Structure without bureaucracy. Clarity without complexity.",
+      "Intake, care, discipleship, operations: we design the processes behind the ministry so nothing falls through the cracks. Structure without bureaucracy. Clarity without complexity.",
     accent: "from-navy/10 to-navy/5",
   },
   {
     icon: Compass,
-    label: "Provide Guidance",
-    title: "Strategic Consulting",
+    label: "Provide Counsel",
+    title: "Counsel That Clarifies",
     description:
-      "We offer consulting and technical support to help leaders implement clear, scalable solutions. From church systems to private AI deployment, we walk alongside you.",
+      "Strategic consulting for churches and leaders, from evaluating your technology stack to deploying private AI on your own infrastructure. We walk alongside you until it works.",
     accent: "from-charcoal/10 to-charcoal/5",
   },
 ];

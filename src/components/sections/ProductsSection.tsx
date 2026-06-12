@@ -7,14 +7,14 @@ const products = [
     name: "Simply Pray",
     tagline: "Prayer Made Simple",
     description:
-      "An iPhone app designed to help you build and sustain a meaningful prayer life. Simply Pray provides structure and guidance for daily prayer through the ACTS framework, helping you move beyond scattered thoughts into focused, faithful communion with God.",
+      "A guided iPhone prayer app built on the ACTS model: Adoration, Confession, Thanksgiving, Supplication. No feeds, no streak guilt, no distractions. Scripture at every step, and a growing record of answered prayer you can return to for years.",
     features: [
       "ACTS prayer framework",
-      "Daily prayer reminders",
       "Scripture-guided prayer",
-      "Progress tracking",
+      "Answered-prayer record",
+      "Private by default",
     ],
-    cta: "Learn More",
+    cta: "Join the Waitlist",
     href: "https://simplypray.io",
     gradient: "from-[#EBF5F1] to-[#F2E8D6]",
     iconBg: "bg-[#EBF5F1]",
@@ -26,12 +26,12 @@ const products = [
     name: "HopeStack",
     tagline: "Care, Simplified",
     description:
-      "The counseling platform built for care teams. HopeStack streamlines intake, scheduling, notes, and supervision in one secure workspace — giving your team the tools to steward your congregation\u2019s most vulnerable moments with excellence.",
+      "The counseling platform built for care teams. HopeStack brings intake, scheduling, notes, and supervision into one secure workspace, so the people stewarding your congregation\u2019s most vulnerable moments spend their time on care, not coordination.",
     features: [
       "Role-aware dashboards",
       "Counseling workflows",
       "HIPAA-aligned security",
-      "3-click commitment",
+      "Supervision built in",
     ],
     cta: "Learn More",
     href: "https://hopestack.tech",

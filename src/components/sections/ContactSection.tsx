@@ -28,9 +28,9 @@ export default function ContactSection() {
               <span className="text-gold-dark">That Lasts</span>
             </h2>
             <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
-              Whether you&apos;re exploring our tools, need strategic guidance,
-              or want to discuss how AI can serve your ministry — we&apos;d love
-              to hear from you.
+              The fastest path is a free 30-minute strategy call: no pitch,
+              just a conversation about your ministry and what would actually
+              help. Prefer to write first? Send a message below.
             </p>
           </div>
         </AnimatedSection>
@@ -65,6 +65,7 @@ export default function ContactSection() {
                     <input
                       id="name"
                       type="text"
+                      autoComplete="name"
                       required
                       className="w-full px-4 py-3 rounded-lg bg-section-alt border border-cream-dark/50 text-charcoal text-sm placeholder:text-warm-gray-light/60 focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10 transition-all"
                       placeholder="Your name"
@@ -80,6 +81,7 @@ export default function ContactSection() {
                     <input
                       id="email"
                       type="email"
+                      autoComplete="email"
                       required
                       className="w-full px-4 py-3 rounded-lg bg-section-alt border border-cream-dark/50 text-charcoal text-sm placeholder:text-warm-gray-light/60 focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10 transition-all"
                       placeholder="you@church.org"
@@ -126,7 +128,8 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={submitted}
-                  className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                  aria-live="polite"
+                  className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm cursor-pointer disabled:cursor-default transition-all duration-300 ${
                     submitted
                       ? "bg-green-600 text-white"
                       : "bg-gold text-charcoal hover:bg-gold-light shadow-md shadow-gold/20"
@@ -161,13 +164,13 @@ export default function ContactSection() {
                     <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold">
                       Schedule a Strategy Call
                     </h3>
-                    <p className="text-cream/40 text-xs">
+                    <p className="text-cream/60 text-xs">
                       Free 30-minute consultation
                     </p>
                   </div>
                 </div>
 
-                <p className="text-cream/50 text-sm leading-relaxed mb-6">
+                <p className="text-cream/65 text-sm leading-relaxed mb-6">
                   Book a free strategy session to discuss your church&apos;s
                   needs, explore how our tools can serve you, or learn about our
                   AI consulting services.

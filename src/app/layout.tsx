@@ -15,25 +15,32 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Solomon Solutions | Wisdom-Driven Technology for Churches & Leaders",
+  metadataBase: new URL("https://solomonsolutions.tech"),
+  title: "Solomon Solutions | Software, Systems & Counsel for Churches",
   description:
-    "We cultivate wisdom and help churches, leaders, and individuals live and lead with clarity, faithfulness, and lasting impact for the glory of God.",
+    "Built by a pastor, engineered for the church. Solomon Solutions creates prayer, care, and AI tools for ministry, plus the systems and strategic counsel to make them work together.",
   keywords: [
     "church technology",
     "ministry tools",
     "church consulting",
     "prayer app",
-    "counseling CRM",
+    "biblical counseling software",
+    "private AI for churches",
     "church systems",
     "Solomon Solutions",
   ],
+  icons: {
+    icon: "/logo-mark.png",
+    apple: "/logo-mark.png",
+  },
   openGraph: {
-    title: "Solomon Solutions | Wisdom-Driven Technology",
+    title: "Solomon Solutions | Software, Systems & Counsel for Churches",
     description:
-      "Tools, systems, and guidance for churches and leaders seeking clarity and lasting impact.",
+      "Built by a pastor, engineered for the church. Prayer, care, and AI tools for ministry, plus the systems and counsel to make them work together.",
     url: "https://solomonsolutions.tech",
     siteName: "Solomon Solutions",
     type: "website",
+    images: ["/solomon-logo.png"],
   },
 };
 

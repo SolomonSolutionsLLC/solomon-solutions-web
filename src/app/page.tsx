@@ -12,8 +12,14 @@ import ContactSection from "@/components/sections/ContactSection";
 export default function Home() {
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-charcoal focus:rounded-lg focus:font-semibold"
+      >
+        Skip to content
+      </a>
       <Navigation />
-      <main>
+      <main id="main">
         <HeroSection />
         <WhySection />
         <WhatWeDoSection />

@@ -3,7 +3,7 @@ import { Heart } from "lucide-react";
 const footerLinks = {
   Products: [
     { label: "Simply Pray", href: "https://simplypray.io" },
-    { label: "HopeStack", href: "#platforms" },
+    { label: "HopeStack", href: "https://hopestack.tech" },
     { label: "HeartwardChat", href: "https://heartwardchat.com" },
   ],
   Resources: [
@@ -25,18 +25,21 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
-                <span className="font-[family-name:var(--font-display)] text-gold font-bold">
-                  S
-                </span>
+              <div className="w-8 h-8 rounded-lg bg-cream border border-gold/30 flex items-center justify-center p-1">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logo-mark.png"
+                  alt="Solomon Solutions monogram"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="font-[family-name:var(--font-display)] text-cream text-lg font-semibold">
                 Solomon Solutions
               </span>
             </div>
             <p className="text-sm leading-relaxed">
-              Cultivating wisdom through technology for churches, leaders, and
-              individuals.
+              Software, systems, and counsel for churches and leaders. Built
+              by a pastor, engineered for the church.
             </p>
           </div>
 

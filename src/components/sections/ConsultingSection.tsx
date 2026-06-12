@@ -25,13 +25,13 @@ const focusAreas = [
     icon: Server,
     title: "Technology Integration",
     description:
-      "Evaluate and implement the right technology stack for your church — from communication to management to giving platforms.",
+      "Evaluate and implement the right technology stack for your church, from communication to management to giving platforms.",
   },
   {
     icon: Brain,
     title: "AI & Open-Source LLM Setup",
     description:
-      "Deploy private AI tools on your own infrastructure. We help pastors and leaders leverage open-source LLMs on VPS — practical, private, powerful.",
+      "Deploy private AI tools on your own infrastructure. We help pastors and leaders leverage open-source LLMs on a VPS: practical, private, powerful.",
   },
 ];
 
@@ -61,9 +61,9 @@ export default function ConsultingSection() {
               <span className="text-gold">Churches & Leaders</span>
             </h2>
             <p className="max-w-2xl mx-auto text-cream/50 text-lg leading-relaxed">
-              Specialized consulting for pastors, churches, and ministry
-              leaders who are ready to build effective systems and lead
-              with intention.
+              For pastors, churches, and ministry leaders ready to trade
+              duct-taped processes for systems that hold, and to put new
+              technology to work without handing your data to someone else.
             </p>
           </div>
         </AnimatedSection>
@@ -81,7 +81,7 @@ export default function ConsultingSection() {
                     <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-cream mb-2">
                       {area.title}
                     </h3>
-                    <p className="text-cream/40 text-sm leading-relaxed">
+                    <p className="text-cream/60 text-sm leading-relaxed">
                       {area.description}
                     </p>
                   </div>
@@ -100,7 +100,7 @@ export default function ConsultingSection() {
                   <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-cream mb-2">
                     What You&apos;ll Gain
                   </h3>
-                  <p className="text-cream/40 text-sm mb-6">
+                  <p className="text-cream/60 text-sm mb-6">
                     For pastors, churches, and ministry leaders ready to build
                     with intention.
                   </p>
@@ -130,7 +130,7 @@ export default function ConsultingSection() {
                     Schedule a Strategy Call
                     <ArrowRight size={18} />
                   </a>
-                  <p className="text-cream/30 text-xs mt-3">
+                  <p className="text-cream/60 text-xs mt-3">
                     Free 30-minute consultation
                   </p>
                 </div>

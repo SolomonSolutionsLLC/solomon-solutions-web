@@ -34,19 +34,16 @@ export default function Navigation() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <div
-            className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 ${
-              scrolled
-                ? "bg-gold/20 border border-gold/30"
-                : "bg-white/10 border border-white/20"
+            className={`w-9 h-9 rounded-lg flex items-center justify-center p-1 bg-cream transition-all duration-300 ${
+              scrolled ? "border border-gold/30" : "border border-white/20"
             }`}
           >
-            <span
-              className={`font-[family-name:var(--font-display)] text-lg font-bold ${
-                scrolled ? "text-gold" : "text-gold-light"
-              }`}
-            >
-              S
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-mark.png"
+              alt="Solomon Solutions monogram"
+              className="w-full h-full object-contain"
+            />
           </div>
           <span
             className={`font-[family-name:var(--font-display)] text-lg font-semibold tracking-wide transition-colors duration-300 ${
@@ -74,17 +71,18 @@ export default function Navigation() {
             href="#contact"
             className="ml-2 px-5 py-2 bg-gold text-charcoal text-sm font-semibold rounded-lg hover:bg-gold-light transition-all duration-300 shadow-md shadow-gold/20"
           >
-            Get Started
+            Book a Call
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`md:hidden p-2 rounded-lg transition-colors ${
+          className={`md:hidden p-2 rounded-lg cursor-pointer transition-colors ${
             scrolled ? "text-cream" : "text-white"
           }`}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -112,7 +110,7 @@ export default function Navigation() {
             onClick={() => setMobileOpen(false)}
             className="block mt-4 text-center px-5 py-3 bg-gold text-charcoal text-sm font-semibold rounded-lg"
           >
-            Get Started
+            Book a Call
           </a>
         </div>
       </div>

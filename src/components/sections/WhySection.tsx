@@ -6,13 +6,13 @@ const pillars = [
     icon: BookOpen,
     title: "Theology Meets Technology",
     description:
-      "We start with Scripture, not trends. Every tool and system we design is grounded in biblical conviction — because lasting solutions require a foundation that doesn't shift.",
+      "We start with Scripture, not trends. Every tool and system we design is grounded in biblical conviction, because lasting solutions require a foundation that doesn't shift.",
   },
   {
     icon: Target,
     title: "Built for Faithfulness",
     description:
-      "We help leaders steward their calling well by creating systems that serve the mission of the Church with excellence and integrity — not just efficiency.",
+      "We help leaders steward their calling well by creating systems that serve the mission of the Church with excellence and integrity, not just efficiency.",
   },
   {
     icon: Crown,
@@ -35,14 +35,15 @@ export default function WhySection() {
               Why We Exist
             </h2>
             <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
-              Technology is accelerating at a blistering pace. Every new
-              capability becomes either one of the greatest multipliers — or
-              one of the greatest distractions — for the Church.
+              Most ministry software is built by vendors who have never
+              counseled a grieving member, planned a discipleship pathway, or
+              led a congregation through change. The result: tools that serve
+              metrics instead of mission.
             </p>
             <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed mt-4">
               Solomon Solutions exists at the intersection of theology,
-              technology, and discipleship to build what ministry leaders
-              actually need.
+              technology, and discipleship, building what ministry leaders
+              actually need the way a fellow pastor would build it.
             </p>
           </div>
         </AnimatedSection>

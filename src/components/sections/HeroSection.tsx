@@ -43,7 +43,7 @@ export default function HeroSection() {
           }`}
         >
           <span className="inline-block px-4 py-1.5 bg-gold/10 border border-gold/20 rounded-full text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-8">
-            Wisdom-Driven Technology
+            Technology &middot; Systems &middot; Counsel
           </span>
         </div>
 
@@ -53,19 +53,20 @@ export default function HeroSection() {
             loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Tools & Strategy
+          Built by a pastor.
           <br />
-          <span className="text-gold">for the Kingdom</span>
+          <span className="text-gold">Engineered for the church.</span>
         </h1>
 
         {/* Subtext */}
         <p
-          className={`max-w-2xl mx-auto text-cream/50 text-lg md:text-xl leading-relaxed mb-12 transition-all duration-1000 delay-600 ${
+          className={`max-w-2xl mx-auto text-cream/65 text-lg md:text-xl leading-relaxed mb-12 transition-all duration-1000 delay-600 ${
             loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          We build practical tools and strategic systems that empower churches
-          and leaders to magnify their ministries and advance God&apos;s kingdom.
+          Solomon Solutions builds the software, systems, and strategy ministry
+          leaders actually need: prayer and care tools, church operations,
+          and private AI. Grounded in Scripture, built to last.
         </p>
 
         {/* CTAs */}
@@ -75,23 +76,29 @@ export default function HeroSection() {
           }`}
         >
           <a
-            href="#what-we-do"
+            href="https://calendly.com/grace-chapel/strategy-session"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3.5 bg-gold text-charcoal font-semibold rounded-lg hover:bg-gold-light transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-gold/30 hover:-translate-y-0.5"
           >
-            Explore Our Work
+            Book a Free Strategy Call
           </a>
           <a
             href="#platforms"
             className="px-8 py-3.5 border border-cream/15 text-cream/70 font-medium rounded-lg hover:border-gold/40 hover:text-gold transition-all duration-300"
           >
-            View Our Tools
+            Explore Our Tools
           </a>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <a href="#why" className="text-cream/20 hover:text-gold/50 transition-colors">
+        <a
+          href="#why"
+          aria-label="Scroll to mission section"
+          className="text-cream/40 hover:text-gold/70 transition-colors"
+        >
           <ChevronDown size={28} />
         </a>
       </div>
