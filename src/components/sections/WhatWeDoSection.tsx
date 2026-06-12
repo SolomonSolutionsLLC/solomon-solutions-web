@@ -4,82 +4,81 @@ import { Wrench, Cog, Compass } from "lucide-react";
 const services = [
   {
     icon: Wrench,
+    number: "01",
     label: "Build Tools",
-    title: "Digital Tools for Growth",
+    title: "Software That Serves",
     description:
-      "We create digital tools that help people think, grow, and live faithfully. From prayer apps to counseling platforms, our products serve the practical needs of ministry.",
-    accent: "from-gold/20 to-gold/5",
+      "Prayer apps, counseling platforms, AI discipleship tools: purpose-built products that meet real ministry needs, not generic software bent to fit them.",
   },
   {
     icon: Cog,
+    number: "02",
     label: "Develop Systems",
-    title: "Systems That Scale",
+    title: "Systems That Hold",
     description:
-      "We design practical systems that help churches and leaders operate more effectively. Structure without bureaucracy. Clarity without complexity.",
-    accent: "from-navy/10 to-navy/5",
+      "Intake, care, discipleship, operations: we design the processes behind the ministry so nothing falls through the cracks. Structure without bureaucracy. Clarity without complexity.",
   },
   {
     icon: Compass,
-    label: "Provide Guidance",
-    title: "Strategic Consulting",
+    number: "03",
+    label: "Provide Counsel",
+    title: "Counsel That Clarifies",
     description:
-      "We offer consulting and technical support to help leaders implement clear, scalable solutions. From church systems to private AI deployment, we walk alongside you.",
-    accent: "from-charcoal/10 to-charcoal/5",
+      "Strategic consulting for churches and leaders, from evaluating your technology stack to deploying private AI on your own infrastructure. We walk alongside you until it works.",
   },
 ];
 
 export default function WhatWeDoSection() {
   return (
-    <section id="what-we-do" className="py-24 md:py-32 bg-section-alt">
+    <section id="what-we-do" className="bg-cream py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
-        <AnimatedSection>
-          <div className="text-center mb-16">
-            <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-              Our Approach
-            </span>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl lg:text-5xl text-charcoal font-bold mt-4 mb-6 leading-tight">
-              What We Do
-            </h2>
-            <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
-              We don&apos;t just give advice. We build the tools to execute it,
-              the systems to sustain it, and the strategy to scale it.
-            </p>
-          </div>
-        </AnimatedSection>
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-20">
+          <AnimatedSection className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32">
+              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+                Our Approach
+              </span>
+              <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl">
+                What We Do
+              </h2>
+              <p className="text-lg leading-relaxed text-warm-gray">
+                We don&apos;t just give advice. We build the tools to execute
+                it, the systems to sustain it, and the strategy to scale it.
+              </p>
+            </div>
+          </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, i) => (
-            <AnimatedSection key={service.label} delay={i * 150}>
-              <div className="group relative h-full flex flex-col p-8 lg:p-10 rounded-2xl bg-white border border-cream-dark/50 hover:border-gold/20 transition-all duration-500 hover:shadow-lg hover:shadow-charcoal/5 overflow-hidden">
-                {/* Background gradient on hover */}
-                <div
-                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.accent} group-hover:h-1.5 transition-all duration-500`}
-                />
-
-                {/* Number */}
-                <span className="text-gold/20 font-[family-name:var(--font-display)] text-6xl font-bold absolute top-4 right-6">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold/15 to-gold/5 flex items-center justify-center mb-6 relative z-10">
-                  <service.icon size={24} className="text-gold-dark" />
+          <div className="lg:col-span-8">
+            {services.map((service, i) => (
+              <AnimatedSection key={service.label} delay={i * 120}>
+                <div className="group border-t border-charcoal/10 py-10 first:border-t-0 first:pt-0 lg:py-12">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
+                    <div className="flex shrink-0 items-baseline gap-4 sm:w-36">
+                      <span className="font-[family-name:var(--font-display)] text-3xl font-bold text-gold/50">
+                        {service.number}
+                      </span>
+                      <service.icon
+                        size={18}
+                        aria-hidden="true"
+                        className="text-charcoal/35 transition-colors duration-300 group-hover:text-gold-dark"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-dark">
+                        {service.label}
+                      </span>
+                      <h3 className="mt-2 mb-3 font-[family-name:var(--font-display)] text-2xl font-semibold text-charcoal">
+                        {service.title}
+                      </h3>
+                      <p className="max-w-xl text-[15px] leading-relaxed text-warm-gray">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Label */}
-                <span className="text-gold text-xs font-semibold tracking-[0.15em] uppercase mb-2">
-                  {service.label}
-                </span>
-
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-charcoal mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-warm-gray leading-relaxed text-[15px] flex-1">
-                  {service.description}
-                </p>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </div>
     </section>

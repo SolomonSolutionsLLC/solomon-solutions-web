@@ -1,123 +1,137 @@
+"use client";
+
+import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
-import {
-  MessageCircle,
-  BookOpen,
-  Heart,
-  Users,
-  ArrowUpRight,
-} from "lucide-react";
+import EcosystemOrbit from "@/components/graphics/EcosystemOrbit";
+import { ArrowUpRight } from "lucide-react";
 
 const platforms = [
   {
-    icon: MessageCircle,
     name: "HeartwardChat",
+    short: "Heartward",
     tagline: "Guided by Faith, Powered by AI",
     description:
-      "Biblical answers, instantly. AI-driven discipleship and counseling tool helping individuals grow through guided conversations rooted in Scripture.",
+      "Biblical answers, instantly. AI-guided discipleship conversations rooted in Scripture, for the questions people carry between Sundays.",
     href: "https://heartwardchat.com",
     status: "Coming Soon",
-    iconBg: "bg-[#2d5a2d]/10",
-    iconColor: "text-[#2d5a2d]",
-    hoverBorder: "hover:border-[#2d5a2d]/30",
+    color: "#2d5a2d",
   },
   {
-    icon: BookOpen,
     name: "The Wisdom Walk",
+    short: "Wisdom Walk",
     tagline: "Discipleship, Counseling & Culture",
     description:
-      "Navigating discipleship, biblical counseling, and cultural issues with wisdom. Articles and resources for pastors and leaders engaging the hard questions.",
+      "Articles and resources on discipleship, biblical counseling, and culture. For pastors and leaders engaging the hard questions with wisdom.",
     href: "https://thewisdomwalk.com",
     status: "Active",
-    iconBg: "bg-[#B8935A]/10",
-    iconColor: "text-[#B8935A]",
-    hoverBorder: "hover:border-[#B8935A]/30",
+    color: "#B8935A",
   },
   {
-    icon: Heart,
     name: "Simply Pray",
+    short: "Simply Pray",
     tagline: "Prayer Made Simple",
     description:
-      "iPhone app for building a structured, faithful prayer life using the ACTS framework. Simple design. Deep purpose.",
+      "Guided iPhone prayer app built on the ACTS model with secure, shareable prayer lists. Scripture-rooted, distraction-free, private by default.",
     href: "https://simplypray.io",
     status: "Coming Soon",
-    iconBg: "bg-[#2F5C51]/10",
-    iconColor: "text-[#2F5C51]",
-    hoverBorder: "hover:border-[#2F5C51]/30",
+    color: "#2F5C51",
   },
   {
-    icon: Users,
     name: "HopeStack",
+    short: "HopeStack",
     tagline: "Care, Simplified",
     description:
-      "The counseling platform built for care teams. Streamline intake, scheduling, notes, and supervision in one secure workspace.",
+      "The counseling platform built for care teams. Intake, scheduling, notes, and supervision in one secure workspace.",
     href: "https://hopestack.tech",
     status: "Coming Soon",
-    iconBg: "bg-[#3B5998]/10",
-    iconColor: "text-[#3B5998]",
-    hoverBorder: "hover:border-[#3B5998]/30",
+    color: "#3B5998",
   },
 ];
 
 export default function EcosystemSection() {
+  const [active, setActive] = useState<number | null>(null);
+
   return (
-    <section id="platforms" className="py-24 md:py-32 bg-section-alt">
+    <section id="platforms" className="bg-section-alt py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
-          <div className="text-center mb-16">
-            <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
               The Ecosystem
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl lg:text-5xl text-charcoal font-bold mt-4 mb-6 leading-tight">
+            <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl">
               Our Platforms
             </h2>
-            <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
-              A connected ecosystem of tools and resources — each serving a
-              distinct purpose, all working toward the same mission.
+            <p className="text-lg leading-relaxed text-warm-gray">
+              Four platforms, one mission: prayer, care, discipleship, and
+              wisdom for the local church. Each tool serves a distinct need;
+              all are built to work together.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {platforms.map((platform, i) => (
-            <AnimatedSection key={platform.name} delay={i * 100}>
-              <a
-                href={platform.href}
-                target={platform.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  platform.href.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className={`group block h-full p-6 lg:p-8 rounded-2xl bg-white border border-cream-dark/50 ${platform.hoverBorder} transition-all duration-500 hover:shadow-lg hover:shadow-charcoal/5 hover:-translate-y-1`}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`w-11 h-11 rounded-xl ${platform.iconBg} flex items-center justify-center transition-colors duration-300`}>
-                    <platform.icon size={20} className={platform.iconColor} />
-                  </div>
-                  {platform.status === "Coming Soon" ? (
-                    <span className="text-[11px] font-medium text-warm-gray-light bg-cream-dark/60 px-2.5 py-1 rounded-full">
-                      Coming Soon
-                    </span>
-                  ) : (
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <AnimatedSection className="hidden lg:block">
+            <EcosystemOrbit
+              nodes={platforms.map((p) => ({
+                name: p.name,
+                short: p.short,
+                href: p.href,
+                color: p.color,
+              }))}
+              activeIndex={active}
+              onActiveChange={setActive}
+            />
+          </AnimatedSection>
+
+          <div>
+            {platforms.map((platform, i) => (
+              <AnimatedSection key={platform.name} delay={i * 100}>
+                <a
+                  href={platform.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onPointerEnter={() => setActive(i)}
+                  onPointerLeave={() => setActive(null)}
+                  onFocus={() => setActive(i)}
+                  onBlur={() => setActive(null)}
+                  className={`group block border-b border-charcoal/10 py-7 transition-colors duration-300 first:border-t ${
+                    active === i ? "bg-warm-white" : ""
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-6 px-2">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-charcoal">
+                          {platform.name}
+                        </h3>
+                        {platform.status === "Coming Soon" ? (
+                          <span className="border border-charcoal/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-warm-gray-light">
+                            Coming Soon
+                          </span>
+                        ) : (
+                          <span className="border border-gold/40 bg-gold/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-dark">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-warm-gray-light">
+                        {platform.tagline}
+                      </p>
+                      <p className="mt-3 max-w-lg text-sm leading-relaxed text-warm-gray">
+                        {platform.description}
+                      </p>
+                    </div>
                     <ArrowUpRight
                       size={18}
-                      className="text-warm-gray-light/50 group-hover:text-charcoal/50 transition-colors duration-300"
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 text-charcoal/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold-dark"
                     />
-                  )}
-                </div>
-
-                <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-charcoal mb-1">
-                  {platform.name}
-                </h3>
-                <p className="text-warm-gray-light text-xs font-medium mb-2">
-                  {platform.tagline}
-                </p>
-                <p className="text-warm-gray text-sm leading-relaxed">
-                  {platform.description}
-                </p>
-              </a>
-            </AnimatedSection>
-          ))}
+                  </div>
+                </a>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </div>
     </section>

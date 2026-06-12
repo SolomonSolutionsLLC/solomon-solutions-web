@@ -4,84 +4,87 @@ import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Mail, Calendar, Send, CheckCircle2 } from "lucide-react";
 
+const inputClasses =
+  "w-full border border-charcoal/15 bg-warm-white px-4 py-3.5 text-sm text-charcoal placeholder:text-warm-gray-light/70 transition-colors focus:border-gold-dark focus:outline-none";
+
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder — wire up to your email service
+    // Placeholder: wire up to your email service
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-section-alt">
+    <section id="contact" className="bg-warm-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
-          <div className="text-center mb-16">
-            <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
               Get In Touch
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl lg:text-5xl text-charcoal font-bold mt-4 mb-6 leading-tight">
+            <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl">
               Let&apos;s Build Something
               <br />
-              <span className="text-gold-dark">That Lasts</span>
+              <span className="italic text-gold-dark">That Lasts</span>
             </h2>
-            <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
-              Whether you&apos;re exploring our tools, need strategic guidance,
-              or want to discuss how AI can serve your ministry — we&apos;d love
-              to hear from you.
+            <p className="text-lg leading-relaxed text-warm-gray">
+              The fastest path is a free 30-minute strategy call: no pitch,
+              just a conversation about your ministry and what would actually
+              help. Prefer to write first? Send a message below.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 lg:grid-cols-2">
           {/* Contact form */}
           <AnimatedSection>
-            <div className="bg-white rounded-2xl border border-cream-dark/50 p-8 lg:p-10 shadow-sm">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
-                  <Mail size={18} className="text-gold" />
-                </div>
+            <div className="border border-charcoal/10 bg-cream p-8 lg:p-10">
+              <div className="mb-8 flex items-center gap-3">
+                <Mail size={18} aria-hidden="true" className="text-gold-dark" />
                 <div>
                   <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-charcoal">
                     Send a Message
                   </h3>
-                  <p className="text-warm-gray-light text-xs">
+                  <p className="text-xs text-warm-gray-light">
                     We respond within 24 hours
                   </p>
                 </div>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-xs font-semibold text-slate-text mb-1.5 tracking-wide"
+                      className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-text"
                     >
                       Name
                     </label>
                     <input
                       id="name"
                       type="text"
+                      autoComplete="name"
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-section-alt border border-cream-dark/50 text-charcoal text-sm placeholder:text-warm-gray-light/60 focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10 transition-all"
+                      className={inputClasses}
                       placeholder="Your name"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-xs font-semibold text-slate-text mb-1.5 tracking-wide"
+                      className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-text"
                     >
                       Email
                     </label>
                     <input
                       id="email"
                       type="email"
+                      autoComplete="email"
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-section-alt border border-cream-dark/50 text-charcoal text-sm placeholder:text-warm-gray-light/60 focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10 transition-all"
+                      className={inputClasses}
                       placeholder="you@church.org"
                     />
                   </div>
@@ -90,19 +93,16 @@ export default function ContactSection() {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-xs font-semibold text-slate-text mb-1.5 tracking-wide"
+                    className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-text"
                   >
                     Subject
                   </label>
-                  <select
-                    id="subject"
-                    className="w-full px-4 py-3 rounded-lg bg-section-alt border border-cream-dark/50 text-charcoal text-sm focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10 transition-all"
-                  >
+                  <select id="subject" className={inputClasses}>
                     <option>General Inquiry</option>
                     <option>Consulting Services</option>
                     <option>Simply Pray</option>
                     <option>HopeStack</option>
-                    <option>AI & Technology</option>
+                    <option>AI &amp; Technology</option>
                     <option>Partnership</option>
                   </select>
                 </div>
@@ -110,7 +110,7 @@ export default function ContactSection() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-xs font-semibold text-slate-text mb-1.5 tracking-wide"
+                    className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-text"
                   >
                     Message
                   </label>
@@ -118,7 +118,7 @@ export default function ContactSection() {
                     id="message"
                     rows={4}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-section-alt border border-cream-dark/50 text-charcoal text-sm placeholder:text-warm-gray-light/60 focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10 transition-all resize-none"
+                    className={`${inputClasses} resize-none`}
                     placeholder="How can we help?"
                   />
                 </div>
@@ -126,20 +126,21 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={submitted}
-                  className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                  aria-live="polite"
+                  className={`flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300 disabled:cursor-default ${
                     submitted
-                      ? "bg-green-600 text-white"
-                      : "bg-gold text-charcoal hover:bg-gold-light shadow-md shadow-gold/20"
+                      ? "bg-green-700 text-white"
+                      : "bg-charcoal text-cream hover:bg-gold-dark"
                   }`}
                 >
                   {submitted ? (
                     <>
-                      <CheckCircle2 size={18} />
+                      <CheckCircle2 size={16} />
                       Message Sent!
                     </>
                   ) : (
                     <>
-                      <Send size={16} />
+                      <Send size={14} />
                       Send Message
                     </>
                   )}
@@ -148,66 +149,65 @@ export default function ContactSection() {
             </div>
           </AnimatedSection>
 
-          {/* Calendar booking card */}
+          {/* Strategy call panel */}
           <AnimatedSection delay={200}>
-            <div className="flex flex-col gap-6">
-              {/* Strategy call card */}
-              <div className="bg-gradient-to-br from-charcoal to-navy rounded-2xl p-8 lg:p-10 text-cream flex-1">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center">
-                    <Calendar size={18} className="text-gold" />
-                  </div>
+            <div className="flex h-full flex-col gap-6">
+              <div className="flex-1 bg-charcoal p-8 text-cream lg:p-10">
+                <div className="mb-6 flex items-center gap-3">
+                  <Calendar size={18} aria-hidden="true" className="text-gold" />
                   <div>
                     <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold">
                       Schedule a Strategy Call
                     </h3>
-                    <p className="text-cream/40 text-xs">
+                    <p className="text-xs text-cream/60">
                       Free 30-minute consultation
                     </p>
                   </div>
                 </div>
 
-                <p className="text-cream/50 text-sm leading-relaxed mb-6">
+                <p className="mb-7 text-sm leading-relaxed text-cream/65">
                   Book a free strategy session to discuss your church&apos;s
                   needs, explore how our tools can serve you, or learn about our
                   AI consulting services.
                 </p>
 
-                <div className="space-y-3 mb-8">
+                <ul className="mb-9 space-y-3">
                   {[
                     "Church systems & process review",
                     "Technology stack evaluation",
                     "AI / LLM deployment options",
                     "Custom solution exploration",
                   ].map((item) => (
-                    <div
+                    <li
                       key={item}
-                      className="flex items-center gap-2.5 text-cream/60 text-sm"
+                      className="flex items-center gap-3 text-sm text-cream/70"
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                      <span
+                        aria-hidden="true"
+                        className="h-1 w-1 shrink-0 rounded-full bg-gold"
+                      />
                       {item}
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 <a
                   href="https://calendly.com/grace-chapel/strategy-session"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 w-full justify-center px-6 py-3.5 bg-gold text-charcoal font-semibold rounded-lg hover:bg-gold-light transition-all duration-300 shadow-lg shadow-gold/20 text-sm"
+                  className="inline-flex w-full items-center justify-center gap-3 bg-gold px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal transition-colors duration-300 hover:bg-gold-light"
                 >
-                  <Calendar size={16} />
+                  <Calendar size={14} />
                   Book Your Free Call
                 </a>
               </div>
 
-              {/* Direct email */}
-              <div className="rounded-2xl bg-white border border-cream-dark/50 p-6 text-center">
-                <p className="text-warm-gray text-sm">
+              <div className="border border-charcoal/10 bg-cream p-6 text-center">
+                <p className="text-sm text-warm-gray">
                   Prefer email?{" "}
                   <a
                     href="mailto:hello@solomonsolutions.tech"
-                    className="text-gold-dark font-semibold hover:text-gold transition-colors"
+                    className="font-semibold text-gold-dark transition-colors hover:text-charcoal"
                   >
                     hello@solomonsolutions.tech
                   </a>

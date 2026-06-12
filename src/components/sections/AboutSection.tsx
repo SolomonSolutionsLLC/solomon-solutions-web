@@ -1,95 +1,87 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { Quote } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-warm-white">
+    <section id="about" className="bg-cream py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Philosophy */}
-          <AnimatedSection>
-            <div>
-              <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-                About Us
-              </span>
-              <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl text-charcoal font-bold mt-4 mb-6 leading-tight">
-                Built on Conviction,
-                <br />
-                Driven by Purpose
-              </h2>
-              <div className="space-y-4 text-warm-gray leading-relaxed text-[15px]">
-                <p>
-                  Solomon Solutions was born from a simple belief: the Church
-                  deserves excellent tools and thoughtful systems. Too often,
-                  ministry leaders navigate outdated technology and fragmented
-                  processes that drain energy instead of multiplying impact.
-                </p>
-                <p>
-                  We approach every project with the same question King Solomon
-                  asked — not for wealth or power, but for discernment.
-                  That pursuit shapes everything we build, from the simplest
-                  prayer app to the most complex church management system.
-                </p>
-                <p>
-                  Our work sits at the intersection of biblical conviction,
-                  strategic thinking, and modern technology. When these three
-                  converge, leaders are empowered to build something that lasts.
-                </p>
-              </div>
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-12 lg:gap-20">
+          {/* Left: Philosophy */}
+          <AnimatedSection className="lg:col-span-7">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+              About Us
+            </span>
+            <h2 className="mt-5 mb-8 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl">
+              Built on Conviction,
+              <br />
+              Driven by Purpose
+            </h2>
+            <div className="max-w-xl space-y-5 text-[15px] leading-relaxed text-warm-gray">
+              <p>
+                Solomon Solutions was founded by Joshua Kirk, a pastor and
+                engineer who spent years watching churches wrestle with
+                technology that was never built for them. Outdated tools,
+                fragmented processes, vendors who didn&apos;t understand
+                ministry. So he started building what he couldn&apos;t find.
+              </p>
+              <p>
+                We approach every project with the same request King Solomon
+                made: not for wealth or power, but for wisdom. That pursuit
+                shapes everything we build, from the simplest prayer app to
+                the most complex care platform.
+              </p>
+              <p>
+                Our work sits at the intersection of biblical conviction,
+                strategic thinking, and modern technology. When those three
+                converge, leaders are freed to build something that lasts.
+              </p>
+            </div>
+
+            <div className="mt-10 flex items-center gap-4">
+              <span className="h-px w-12 bg-gold/50" />
+              <p className="text-sm">
+                <span className="font-semibold text-charcoal">Joshua Kirk</span>
+                <span className="text-warm-gray-light">
+                  {" "}
+                  &middot; Pastor &amp; Founder
+                </span>
+              </p>
             </div>
           </AnimatedSection>
 
-          {/* Right — Quote card */}
-          <AnimatedSection delay={200}>
-            <div className="relative">
-              {/* Decorative border */}
-              <div className="absolute -inset-3 rounded-2xl border border-gold/10" />
-              <div className="absolute -inset-6 rounded-3xl border border-gold/5" />
+          {/* Right: Scripture panel */}
+          <AnimatedSection delay={200} className="lg:col-span-5">
+            <figure className="relative bg-charcoal p-8 lg:p-10">
+              <div aria-hidden="true" className="absolute top-0 left-0 h-[3px] w-full bg-gold" />
+              <div
+                aria-hidden="true"
+                className="mb-5 font-[family-name:var(--font-display)] text-6xl leading-none text-gold/30"
+              >
+                &ldquo;
+              </div>
+              <blockquote className="font-[family-name:var(--font-display)] text-xl italic leading-relaxed text-cream/90 md:text-2xl">
+                If any of you lacks wisdom, let him ask God, who gives
+                generously to all without reproach, and it will be given him.
+              </blockquote>
+              <figcaption className="mt-6 text-sm font-semibold tracking-[0.18em] text-gold">
+                &mdash; JAMES 1:5
+              </figcaption>
+            </figure>
 
-              <div className="relative rounded-2xl bg-gradient-to-br from-charcoal to-navy p-8 lg:p-10">
-                <Quote
-                  size={40}
-                  className="text-gold/20 mb-4"
-                />
-                <blockquote className="font-[family-name:var(--font-display)] text-xl md:text-2xl text-cream/90 leading-relaxed mb-6 italic">
-                  If any of you lacks wisdom, let him ask God, who gives
-                  generously to all without reproach, and it will be given him.
-                </blockquote>
-                <cite className="text-gold text-sm font-semibold not-italic tracking-wide">
-                  — James 1:5
-                </cite>
-
-                {/* Decorative dots */}
-                <div className="absolute bottom-6 right-6 grid grid-cols-3 gap-1.5">
-                  {Array.from({ length: 9 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-1.5 h-1.5 rounded-full bg-gold/10"
-                    />
-                  ))}
+            <div className="mt-px grid grid-cols-3 divide-x divide-charcoal/10 border border-charcoal/10 bg-warm-white">
+              {[
+                { label: "Wisdom", sublabel: "Scripture-Informed" },
+                { label: "Strategy", sublabel: "Systems-Driven" },
+                { label: "Stewardship", sublabel: "Mission-Focused" },
+              ].map((pillar) => (
+                <div key={pillar.label} className="px-3 py-5 text-center">
+                  <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-charcoal">
+                    {pillar.label}
+                  </p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-warm-gray-light">
+                    {pillar.sublabel}
+                  </p>
                 </div>
-              </div>
-
-              {/* Philosophy pillars */}
-              <div className="grid grid-cols-3 gap-4 mt-6">
-                {[
-                  { label: "Wisdom", sublabel: "Scripture-Informed" },
-                  { label: "Strategy", sublabel: "Systems-Driven" },
-                  { label: "Stewardship", sublabel: "Mission-Focused" },
-                ].map((pillar) => (
-                  <div
-                    key={pillar.label}
-                    className="text-center p-4 rounded-xl bg-section-alt border border-cream-dark/30"
-                  >
-                    <p className="font-[family-name:var(--font-display)] text-charcoal font-semibold text-sm">
-                      {pillar.label}
-                    </p>
-                    <p className="text-warm-gray-light text-[11px] mt-0.5">
-                      {pillar.sublabel}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
