@@ -31,7 +31,7 @@ const platforms = [
     short: "Simply Pray",
     tagline: "Prayer Made Simple",
     description:
-      "Guided iPhone prayer app built on the ACTS model. Scripture-rooted, distraction-free, private by default.",
+      "Guided iPhone prayer app built on the ACTS model with secure, shareable prayer lists. Scripture-rooted, distraction-free, private by default.",
     href: "https://simplypray.io",
     status: "Coming Soon",
     color: "#2F5C51",
