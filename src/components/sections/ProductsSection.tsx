@@ -16,17 +16,14 @@ const products = [
     ],
     cta: "Join the Waitlist",
     href: "https://simplypray.io",
-    gradient: "from-[#EBF5F1] to-[#F2E8D6]",
-    iconBg: "bg-[#EBF5F1]",
-    iconColor: "text-[#2F5C51]",
-    dotColor: "bg-[#2F5C51]",
+    accent: "#2F5C51",
   },
   {
     icon: Users,
     name: "HopeStack",
     tagline: "Care, Simplified",
     description:
-      "The counseling platform built for care teams. HopeStack brings intake, scheduling, notes, and supervision into one secure workspace, so the people stewarding your congregation\u2019s most vulnerable moments spend their time on care, not coordination.",
+      "The counseling platform built for care teams. HopeStack brings intake, scheduling, notes, and supervision into one secure workspace, so the people stewarding your congregation’s most vulnerable moments spend their time on care, not coordination.",
     features: [
       "Role-aware dashboards",
       "Counseling workflows",
@@ -35,99 +32,82 @@ const products = [
     ],
     cta: "Learn More",
     href: "https://hopestack.tech",
-    gradient: "from-[#E8EDF5] to-[#F0F4FA]",
-    iconBg: "bg-[#E8EDF5]",
-    iconColor: "text-[#3B5998]",
-    dotColor: "bg-[#3B5998]",
+    accent: "#3B5998",
   },
 ];
 
 export default function ProductsSection() {
   return (
-    <section id="products" className="py-24 md:py-32 bg-warm-white">
+    <section id="products" className="bg-warm-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
-          <div className="text-center mb-16">
-            <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
+          <div className="mx-auto mb-20 max-w-2xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
               Our Products
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl lg:text-5xl text-charcoal font-bold mt-4 mb-6 leading-tight">
+            <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl">
               Tools Built for Ministry
             </h2>
-            <p className="max-w-2xl mx-auto text-warm-gray text-lg leading-relaxed">
+            <p className="text-lg leading-relaxed text-warm-gray">
               Purpose-driven products designed to serve the unique needs of
               churches, leaders, and individuals.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="border-t border-charcoal/10">
           {products.map((product, i) => (
-            <AnimatedSection key={product.name} delay={i * 200}>
-              <div className="group relative h-full flex flex-col rounded-2xl border border-cream-dark/50 bg-white overflow-hidden hover:border-gold/20 transition-all duration-500 hover:shadow-xl hover:shadow-charcoal/5">
-                {/* Top gradient band */}
-                <div
-                  className={`h-2 bg-gradient-to-r ${product.gradient}`}
-                />
-
-                <div className="p-8 lg:p-10 flex flex-col flex-1">
-                  {/* Header */}
-                  <div className="flex items-start gap-4 mb-6">
-                    <div
-                      className={`w-14 h-14 rounded-xl ${product.iconBg} flex items-center justify-center shrink-0`}
-                    >
-                      <product.icon
-                        size={24}
-                        className={product.iconColor}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold text-charcoal">
-                        {product.name}
-                      </h3>
-                      <p className="text-warm-gray-light text-sm font-medium">
-                        {product.tagline}
-                      </p>
-                    </div>
+            <AnimatedSection key={product.name} delay={i * 150}>
+              <article className="grid grid-cols-1 gap-8 border-b border-charcoal/10 py-14 lg:grid-cols-12 lg:gap-14 lg:py-16">
+                <div className="lg:col-span-5">
+                  <div className="flex items-center gap-3">
+                    <product.icon
+                      size={20}
+                      aria-hidden="true"
+                      style={{ color: product.accent }}
+                    />
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-warm-gray-light">
+                      {product.tagline}
+                    </span>
                   </div>
-
-                  {/* Description */}
-                  <p className="text-warm-gray leading-relaxed text-[15px] mb-6 flex-1">
-                    {product.description}
-                  </p>
-
-                  {/* Features */}
-                  <div className="grid grid-cols-2 gap-2 mb-8">
-                    {product.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-center gap-2 text-sm text-slate-text"
-                      >
-                        <div className={`w-1.5 h-1.5 rounded-full ${product.dotColor} shrink-0`} />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
+                  <h3 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal md:text-4xl">
+                    {product.name}
+                  </h3>
                   <a
                     href={product.href}
-                    target={product.href.startsWith("http") ? "_blank" : undefined}
-                    rel={
-                      product.href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    className="inline-flex items-center gap-2 text-gold-dark font-semibold text-sm hover:text-gold transition-colors group/cta"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-dark transition-colors hover:text-charcoal"
                   >
                     {product.cta}
                     <ArrowRight
-                      size={16}
-                      className="group-hover/cta:translate-x-1 transition-transform"
+                      size={14}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
                     />
                   </a>
                 </div>
-              </div>
+
+                <div className="lg:col-span-7">
+                  <p className="mb-7 max-w-2xl text-[15px] leading-relaxed text-warm-gray">
+                    {product.description}
+                  </p>
+                  <ul className="grid grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2">
+                    {product.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="flex items-center gap-3 border-b border-charcoal/5 pb-3 text-sm text-slate-text"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="h-1.5 w-1.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: product.accent }}
+                        />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             </AnimatedSection>
           ))}
         </div>

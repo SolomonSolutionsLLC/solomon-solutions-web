@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/graphics/ScrollProgress";
 import HeroSection from "@/components/sections/HeroSection";
 import WhySection from "@/components/sections/WhySection";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
@@ -18,6 +19,7 @@ export default function Home() {
       >
         Skip to content
       </a>
+      <ScrollProgress />
       <Navigation />
       <main id="main">
         <HeroSection />

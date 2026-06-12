@@ -1,4 +1,7 @@
+"use client";
+
 import AnimatedSection from "@/components/AnimatedSection";
+import ConsultingAccordion from "@/components/ConsultingAccordion";
 import {
   Church,
   Brain,
@@ -44,23 +47,27 @@ const outcomes = [
 
 export default function ConsultingSection() {
   return (
-    <section id="consulting" className="py-24 md:py-32 bg-charcoal relative overflow-hidden">
-      {/* Background accents */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/[0.03] rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-navy-light/30 rounded-full blur-[120px]" />
+    <section
+      id="consulting"
+      className="relative overflow-hidden bg-charcoal py-24 md:py-32"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-gold/[0.04] blur-[150px]"
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <AnimatedSection>
-          <div className="text-center mb-16">
-            <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
               Consulting Services
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl lg:text-5xl text-cream font-bold mt-4 mb-6 leading-tight">
+            <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-cream md:text-4xl lg:text-5xl">
               Strategic Guidance for
               <br />
-              <span className="text-gold">Churches & Leaders</span>
+              <span className="italic text-gold">Churches &amp; Leaders</span>
             </h2>
-            <p className="max-w-2xl mx-auto text-cream/50 text-lg leading-relaxed">
+            <p className="text-lg leading-relaxed text-cream/65">
               For pastors, churches, and ministry leaders ready to trade
               duct-taped processes for systems that hold, and to put new
               technology to work without handing your data to someone else.
@@ -68,76 +75,53 @@ export default function ConsultingSection() {
           </div>
         </AnimatedSection>
 
-        {/* Focus areas grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {focusAreas.map((area, i) => (
-            <AnimatedSection key={area.title} delay={i * 100}>
-              <div className="group p-6 lg:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-gold/20 hover:bg-white/[0.05] transition-all duration-500">
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
-                    <area.icon size={20} className="text-gold" />
-                  </div>
-                  <div>
-                    <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-cream mb-2">
-                      {area.title}
-                    </h3>
-                    <p className="text-cream/60 text-sm leading-relaxed">
-                      {area.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
+          <AnimatedSection delay={150} className="lg:col-span-7">
+            <p className="mb-5 font-[family-name:var(--font-display)] text-xl font-semibold italic text-gold/90">
+              Here&apos;s how we can help you:
+            </p>
+            <ConsultingAccordion items={focusAreas} />
+          </AnimatedSection>
 
-        {/* Outcomes + CTA */}
-        <AnimatedSection delay={400}>
-          <div className="max-w-3xl mx-auto">
-            <div className="rounded-2xl bg-gradient-to-br from-gold/10 to-gold/5 border border-gold/15 p-8 lg:p-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-cream mb-2">
-                    What You&apos;ll Gain
-                  </h3>
-                  <p className="text-cream/60 text-sm mb-6">
-                    For pastors, churches, and ministry leaders ready to build
-                    with intention.
-                  </p>
-                  <ul className="space-y-3">
-                    {outcomes.map((outcome) => (
-                      <li
-                        key={outcome}
-                        className="flex items-start gap-2.5 text-cream/70 text-sm"
-                      >
-                        <CheckCircle2
-                          size={16}
-                          className="text-gold mt-0.5 shrink-0"
-                        />
-                        {outcome}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="text-center md:text-right">
-                  <a
-                    href="https://calendly.com/grace-chapel/strategy-session"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-gold text-charcoal font-semibold rounded-lg hover:bg-gold-light transition-all duration-300 shadow-lg shadow-gold/20"
+          <AnimatedSection delay={300} className="lg:col-span-5">
+            <div className="border border-gold/25 p-8 lg:p-10">
+              <h3 className="mb-2 font-[family-name:var(--font-display)] text-xl font-semibold text-cream">
+                What You&apos;ll Gain
+              </h3>
+              <p className="mb-7 text-sm text-cream/60">
+                For pastors, churches, and ministry leaders ready to build
+                with intention.
+              </p>
+              <ul className="mb-9 space-y-3.5">
+                {outcomes.map((outcome) => (
+                  <li
+                    key={outcome}
+                    className="flex items-start gap-3 text-sm text-cream/75"
                   >
-                    Schedule a Strategy Call
-                    <ArrowRight size={18} />
-                  </a>
-                  <p className="text-cream/60 text-xs mt-3">
-                    Free 30-minute consultation
-                  </p>
-                </div>
-              </div>
+                    <CheckCircle2
+                      size={16}
+                      aria-hidden="true"
+                      className="mt-0.5 shrink-0 text-gold"
+                    />
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://calendly.com/grace-chapel/strategy-session"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-3 bg-gold px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal transition-colors duration-300 hover:bg-gold-light"
+              >
+                Schedule a Strategy Call
+                <ArrowRight size={14} />
+              </a>
+              <p className="mt-4 text-center text-xs text-cream/60">
+                Free 30-minute consultation
+              </p>
             </div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
+        </div>
       </div>
     </section>
   );
