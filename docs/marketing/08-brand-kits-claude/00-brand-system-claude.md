@@ -36,8 +36,9 @@ Board: [solomon-family-brand-board.svg](solomon-family-brand-board.svg) · Real 
 :root{ --solomon-primary:#16213e; --solomon-accent:#c9a84c; --solomon-bg:#faf7f0; --solomon-ink:#1a1a2e; --solomon-slate:#3a3a4e; }
 /* ---- Simply Pray ---- */
 :root{ --sp-primary:#2f5c51; --sp-accent:#b8935a; --sp-bg:#f8f4ef; --sp-ink:#1d2b27; --sp-ink-mid:#4a5c57; --sp-gold-light:#f2e8d6; }
-/* ---- HopeStack (from codebase) ---- */
-:root{ --hs-primary:#0f1c33; --hs-secondary:#44516a; --hs-accent:#eab44f; --hs-sky:#60a5fa; --hs-tint-green:#e6efe9; --hs-tint-blue:#e0e9f5; }
+/* ---- HopeStack (DEPLOYED: HopeStack-WebPortal/app/globals.css) ---- */
+:root{ --hs-primary:#1e407c; --hs-deep:#02204a; --hs-gold:#eab44f; --hs-sage:#8fb5a0; --hs-mist:#dce6f2; --hs-text:#0f1c33; }
+/* Full deployed token set lives in tokens.css (this folder). */
 /* ---- Heartward (PDF proposal — no live tokens yet) ---- */
 :root{ --hw-primary:#2b2d6e; --hw-accent:#c9a84c; --hw-bg:#fdfcfa; }
 ```
@@ -59,7 +60,7 @@ Board: [solomon-family-brand-board.svg](solomon-family-brand-board.svg) · Real 
 - **CTAs:** "Join the waitlist" / "Get early access" (app not live yet).
 
 ### HopeStack — *uses codebase colors (chosen), not the PDF's teal proposal*
-- **Colors:** Navy `#0f1c33` (primary) · Slate `#44516a` (secondary) · Amber `#eab44f` (accent) · Sky `#60a5fa` (light variant) · soft tints green `#e6efe9` / blue `#e0e9f5`.
+- **Colors (deployed, from globals.css):** Brand blue `#1e407c` (primary-600) · Deep `#02204a` (primary-900, dark surfaces / logo bg) · Gold `#eab44f` (warm accent) · Sage `#8fb5a0` · Mist `#dce6f2` · Text `#0f1c33` / `#44516a`. The earlier PDF proposed teal/sky — the **live site uses this blue scale**; `tokens.css` is authoritative.
 - **Logo:** navy H/S stacked monogram; light app icon in sky blue (`logos/hopestack-logos.png`). Tagline "Manage better. Counsel more."
 - **Tone:** competent, calm, trustworthy. Vocabulary: secure, audit, role-aware, intake, scheduling, notes. Avoid playful startup language.
 - **Compliance:** say **"HIPAA-aligned, pursuing SOC 2"** — never "certified." No PHI, no client stories without consent.

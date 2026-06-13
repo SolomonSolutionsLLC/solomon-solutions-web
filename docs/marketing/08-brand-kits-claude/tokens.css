@@ -1,0 +1,71 @@
+/* Solomon Solutions brand family — design tokens
+ * SOURCE OF TRUTH: the actually-deployed globals.css in each repo (verified 2026-06-13).
+ *   Solomon  -> Solomon Solutions Web/src/app/globals.css (@theme inline)
+ *   HopeStack-> HopeStack_Production/HopeStack-WebPortal/app/globals.css
+ *   SimplyPray-> Simply-Pray/SimplyPray-Web/index.html :root
+ * These are the live colors — do not substitute the older PDF proposals.
+ */
+
+:root {
+  /* ---- Family shared ---- */
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;   /* family standard, all brands */
+  --radius-sm: 12px; --radius-md: 20px; --radius-lg: 32px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+
+  /* ============ SOLOMON SOLUTIONS (solomonsolutions.tech) ============ */
+  --solomon-charcoal: #1a1a2e;        /* primary dark / headings */
+  --solomon-charcoal-light: #242440;
+  --solomon-navy: #16213e;
+  --solomon-navy-light: #1a2744;
+  --solomon-gold: #c9a84c;            /* accent */
+  --solomon-gold-light: #dfc06a;
+  --solomon-gold-dark: #b08d3a;       /* accent hover */
+  --solomon-cream: #faf7f0;           /* page background */
+  --solomon-cream-dark: #f0ebe0;
+  --solomon-warm-white: #fdfcfa;
+  --solomon-warm-gray: #6b6b7b;
+  --solomon-warm-gray-light: #7e7e92;
+  --solomon-slate-text: #3a3a4e;      /* body text */
+  --solomon-section-alt: #f5f2eb;
+
+  /* ============ SIMPLY PRAY (simplypray.io) ============ */
+  --sp-bg: #f8f4ef;                   /* page background */
+  --sp-bg-dark: #ede8df;
+  --sp-green-deep: #2f5c51;           /* primary */
+  --sp-green-mid: #3a6f63;
+  --sp-green-brand: #3e8b7c;          /* matches the logo SVG */
+  --sp-green-light: #cfe7dd;
+  --sp-green-pale: #ebf5f1;
+  --sp-gold: #b8935a;                 /* accent */
+  --sp-gold-light: #f2e8d6;
+  --sp-ink: #1d2b27;                  /* body text */
+  --sp-ink-mid: #4a5c57;
+  --sp-ink-soft: #607069;
+  --sp-white: #ffffff;
+
+  /* ============ HOPESTACK (hopestack.tech) ============ */
+  --hs-primary-50: #f2f6fc;           /* page background */
+  --hs-primary-100: #e0e9f5;
+  --hs-primary-200: #c2d3ea;
+  --hs-primary-500: #2f5596;
+  --hs-primary-600: #1e407c;          /* brand blue / buttons */
+  --hs-primary-700: #143263;
+  --hs-primary-800: #0a2752;
+  --hs-primary-900: #02204a;          /* deep brand / dark surfaces */
+  --hs-sage-100: #e6efe9;
+  --hs-sage-300: #b8d2c2;
+  --hs-sage-500: #8fb5a0;             /* sage accent */
+  --hs-sage-700: #5d8a71;
+  --hs-gold-100: #faecd3;
+  --hs-gold-400: #eab44f;             /* warm accent */
+  --hs-gold-500: #e3a63b;
+  --hs-gold-600: #c4882a;
+  --hs-mist: #dce6f2;
+  --hs-text-primary: #0f1c33;
+  --hs-text-secondary: #44516a;
+  --hs-text-muted: #687590;
+  --hs-border: #e3e7ee;
+  --hs-border-light: #f1f3f7;
+  --hs-success: #059669;
+}
