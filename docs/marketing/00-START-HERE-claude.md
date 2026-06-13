@@ -12,11 +12,13 @@ This is the **Claude** track. A parallel **Codex** set also lives in `docs/marke
 | File / folder | Stage | What it is | Status |
 |---|---|---|---|
 | `01-intake-and-audit-claude.md` | 1 | Audit of all 5 properties, personas, funnel score, fastest path | ✅ Done |
-| `02-research-claude/` | 2 | 12 cited, beginner-friendly marketing references | 🔁 Regenerating (iCloud ate v1) |
-| `03-youtube-tutorials-claude/` | 3 | One **real-transcript** tutorial per video (yt-dlp captions) | ⏳ Extracting (running) |
+| `02-research-claude/` | 2 | 12 cited, beginner-friendly marketing references + index | ✅ Done |
+| `03-youtube-tutorials-claude/` | 3 | 14 **real-transcript** tutorials (yt-dlp captions) + index | ✅ Done |
 | `04-ai-marketing-team-claude.md` | 4 | 12 AI marketing-agent roles + prompt templates | ✅ Done |
-| `05-funnels-claude/` | 5 | Per-product funnel + 30/90-day plans (Simply Pray first) | ⏳ Next |
-| `06-unified-marketing-plan-claude.md` | 6 | The one cohesive plan | ⏳ Last |
+| `05-funnels-claude/` | 5 | 5 per-product funnels + 30/90-day plans (Simply Pray first) | ✅ Done |
+| `06-unified-marketing-plan-claude.md` | 6 | **The one cohesive plan — read this** | ✅ Done |
+
+**All six stages complete and committed to git on branch `marketing-claude`.** Start with Stage 6, then dip into the others as you act.
 
 ---
 
