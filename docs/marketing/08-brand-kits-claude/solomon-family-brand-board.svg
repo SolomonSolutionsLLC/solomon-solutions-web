@@ -1,0 +1,60 @@
+<svg width="100%" viewBox="0 0 680 620" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Solomon Solutions brand family system</title>
+<desc>The Solomon Solutions brand family: shared DM Sans typography, 8px grid, and per-brand color palettes for Solomon Solutions, Simply Pray, HopeStack, Heartward, and The Wisdom Walk.</desc>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&amp;display=swap');
+.b{font-family:'DM Sans',system-ui,sans-serif;}
+</style>
+<rect x="0" y="0" width="680" height="620" rx="16" fill="#FAF7F0"/>
+<text x="40" y="46" class="b" font-size="12" letter-spacing="2" fill="#B08D3A">Brand family</text>
+<text x="40" y="82" class="b" font-size="27" font-weight="500" fill="#16213E">Solomon Solutions</text>
+<line x1="40" y1="98" x2="640" y2="98" stroke="#E3D9C2" stroke-width="1"/>
+<text x="40" y="124" class="b" font-size="13" fill="#6B6B7B">DM Sans · Lucide icons · 8px grid · radii 12 / 20 / 32 · navy + gold anchor</text>
+
+<rect x="40" y="150" width="600" height="74" rx="12" fill="#FFFFFF" stroke="#ECE6D8" stroke-width="1"/>
+<rect x="56" y="164" width="28" height="46" rx="4" fill="#16213E"/>
+<rect x="88" y="164" width="28" height="46" rx="4" fill="#C9A84C"/>
+<rect x="120" y="164" width="28" height="46" rx="4" fill="#FAF7F0" stroke="#E0D6C0"/>
+<text x="168" y="186" class="b" font-size="18" font-weight="500" fill="#16213E">Solomon Solutions</text>
+<text x="168" y="208" class="b" font-size="13" fill="#6B6B7B">Parent brand · wisdom-driven tech</text>
+<rect x="474" y="172" width="150" height="30" rx="15" fill="#E9ECF3"/>
+<text x="549" y="191" text-anchor="middle" class="b" font-size="12" fill="#16213E">Sober · trusted</text>
+
+<rect x="40" y="236" width="600" height="74" rx="12" fill="#FFFFFF" stroke="#ECE6D8" stroke-width="1"/>
+<rect x="56" y="250" width="28" height="46" rx="4" fill="#2F5C51"/>
+<rect x="88" y="250" width="28" height="46" rx="4" fill="#B8935A"/>
+<rect x="120" y="250" width="28" height="46" rx="4" fill="#F8F4EF" stroke="#E0D6C0"/>
+<text x="168" y="272" class="b" font-size="18" font-weight="500" fill="#2F5C51">Simply Pray</text>
+<text x="168" y="294" class="b" font-size="13" fill="#6B6B7B">Prayer app · the ACTS method</text>
+<rect x="474" y="258" width="150" height="30" rx="15" fill="#E7F0EC"/>
+<text x="549" y="277" text-anchor="middle" class="b" font-size="12" fill="#2F5C51">Reverent · calm</text>
+
+<rect x="40" y="322" width="600" height="74" rx="12" fill="#FFFFFF" stroke="#ECE6D8" stroke-width="1"/>
+<rect x="56" y="336" width="28" height="46" rx="4" fill="#0F1C33"/>
+<rect x="88" y="336" width="28" height="46" rx="4" fill="#60A5FA"/>
+<rect x="120" y="336" width="28" height="46" rx="4" fill="#EAB44F"/>
+<text x="168" y="358" class="b" font-size="18" font-weight="500" fill="#0F1C33">HopeStack</text>
+<text x="168" y="380" class="b" font-size="13" fill="#6B6B7B">Counseling CRM · HIPAA + SOC 2</text>
+<rect x="474" y="344" width="150" height="30" rx="15" fill="#E6EDF7"/>
+<text x="549" y="363" text-anchor="middle" class="b" font-size="12" fill="#0F1C33">Competent · calm</text>
+
+<rect x="40" y="408" width="600" height="74" rx="12" fill="#FFFFFF" stroke="#ECE6D8" stroke-width="1"/>
+<rect x="56" y="422" width="28" height="46" rx="4" fill="#2B2D6E"/>
+<rect x="88" y="422" width="28" height="46" rx="4" fill="#C9A84C"/>
+<rect x="120" y="422" width="28" height="46" rx="4" fill="#FDFCFA" stroke="#E0D6C0"/>
+<text x="168" y="444" class="b" font-size="18" font-weight="500" fill="#2B2D6E">Heartward</text>
+<text x="168" y="466" class="b" font-size="13" fill="#6B6B7B">AI theological study companion</text>
+<rect x="474" y="430" width="150" height="30" rx="15" fill="#E9E9F5"/>
+<text x="549" y="449" text-anchor="middle" class="b" font-size="12" fill="#2B2D6E">Scholarly · warm</text>
+
+<rect x="40" y="494" width="600" height="74" rx="12" fill="#FFFFFF" stroke="#ECE6D8" stroke-width="1"/>
+<rect x="56" y="508" width="28" height="46" rx="4" fill="#1A1A2E"/>
+<rect x="88" y="508" width="28" height="46" rx="4" fill="#C9A84C"/>
+<rect x="120" y="508" width="28" height="46" rx="4" fill="#FAF7F0" stroke="#E0D6C0"/>
+<text x="168" y="530" class="b" font-size="18" font-weight="500" fill="#1A1A2E">The Wisdom Walk</text>
+<text x="168" y="552" class="b" font-size="13" fill="#6B6B7B">Discipleship &amp; culture · content hub</text>
+<rect x="474" y="516" width="150" height="30" rx="15" fill="#F3ECD9"/>
+<text x="549" y="535" text-anchor="middle" class="b" font-size="12" fill="#8A6D1F">Editorial · wise</text>
+
+<text x="40" y="596" class="b" font-size="12" fill="#9A958C">Real logos copied to logos/ · exact tokens + tokens.css in 00-brand-system-claude.md</text>
+</svg>
