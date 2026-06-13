@@ -1,0 +1,64 @@
+<svg width="100%" viewBox="0 0 680 712" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Simply Pray brand board</title>
+<desc>Brand kit board for Simply Pray: logo lockup, forest-green and gold color system, Cormorant Garamond and DM Sans typography, the ACTS framework, and the brand tagline, on a cream canvas.</desc>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=DM+Sans:wght@300;400;500&amp;display=swap');
+.disp{font-family:'Cormorant Garamond',Georgia,serif;}
+.body{font-family:'DM Sans',system-ui,sans-serif;}
+</style>
+<rect x="0" y="0" width="680" height="712" rx="18" fill="#FAF6EC"/>
+<rect x="14" y="14" width="652" height="684" rx="12" fill="none" stroke="#E7DEC9" stroke-width="1"/>
+
+<text x="40" y="50" class="body" font-size="12" letter-spacing="2" fill="#B0883A">Simply Pray · Brand kit</text>
+<text x="640" y="50" text-anchor="end" class="body" font-size="12" letter-spacing="1" fill="#9A958C">01 — Identity</text>
+
+<rect x="40" y="70" width="86" height="86" rx="20" fill="#2F5C51"/>
+<circle cx="83" cy="142" r="4.5" fill="#C9A84C"/>
+<circle cx="83" cy="124" r="4" fill="#FAF6EC"/>
+<circle cx="83" cy="108" r="3.4" fill="#FAF6EC"/>
+<circle cx="83" cy="94" r="2.8" fill="#9FB7AD"/>
+<path d="M67 86 Q83 70 99 86" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+
+<text x="146" y="116" class="disp" font-size="46" font-weight="600" fill="#2F5C51">Simply Pray</text>
+<text x="148" y="142" class="body" font-size="13" letter-spacing="0.5" fill="#5F5E5A">Pray with depth. Remember every prayer.</text>
+
+<line x1="40" y1="186" x2="640" y2="186" stroke="#E7DEC9" stroke-width="1"/>
+
+<text x="40" y="220" class="body" font-size="12" letter-spacing="2" fill="#B0883A">Color</text>
+<rect x="40" y="234" width="142" height="72" rx="8" fill="#2F5C51"/>
+<rect x="194" y="234" width="142" height="72" rx="8" fill="#C9A84C"/>
+<rect x="348" y="234" width="142" height="72" rx="8" fill="#FAF6EC" stroke="#E0D6C0" stroke-width="1"/>
+<rect x="502" y="234" width="138" height="72" rx="8" fill="#1A1A2E"/>
+<text x="40" y="326" class="body" font-size="13" fill="#2C2C2A">Forest</text>
+<text x="40" y="342" class="body" font-size="11" fill="#9A958C">#2F5C51</text>
+<text x="194" y="326" class="body" font-size="13" fill="#2C2C2A">Gold</text>
+<text x="194" y="342" class="body" font-size="11" fill="#9A958C">#C9A84C</text>
+<text x="348" y="326" class="body" font-size="13" fill="#2C2C2A">Cream</text>
+<text x="348" y="342" class="body" font-size="11" fill="#9A958C">#FAF6EC</text>
+<text x="502" y="326" class="body" font-size="13" fill="#2C2C2A">Ink</text>
+<text x="502" y="342" class="body" font-size="11" fill="#9A958C">#1A1A2E</text>
+
+<line x1="40" y1="368" x2="640" y2="368" stroke="#E7DEC9" stroke-width="1"/>
+
+<text x="40" y="402" class="body" font-size="12" letter-spacing="2" fill="#B0883A">Typography</text>
+<text x="40" y="468" class="disp" font-size="72" font-weight="600" fill="#2F5C51">Aa</text>
+<text x="150" y="438" class="disp" font-size="20" font-weight="600" fill="#2C2C2A">Cormorant Garamond</text>
+<text x="150" y="458" class="body" font-size="12" fill="#9A958C">Display · headlines · Scripture</text>
+<text x="150" y="486" class="body" font-size="18" font-weight="400" fill="#2C2C2A">DM Sans</text>
+<text x="150" y="504" class="body" font-size="12" fill="#9A958C">Body · UI · captions</text>
+
+<line x1="40" y1="528" x2="640" y2="528" stroke="#E7DEC9" stroke-width="1"/>
+
+<text x="40" y="562" class="body" font-size="12" letter-spacing="2" fill="#B0883A">The ACTS framework</text>
+<rect x="40" y="576" width="142" height="34" rx="17" fill="#EAF1EE"/>
+<text x="111" y="598" text-anchor="middle" class="body" font-size="13" fill="#2F5C51">Adoration</text>
+<rect x="194" y="576" width="142" height="34" rx="17" fill="#EAF1EE"/>
+<text x="265" y="598" text-anchor="middle" class="body" font-size="13" fill="#2F5C51">Confession</text>
+<rect x="348" y="576" width="142" height="34" rx="17" fill="#EAF1EE"/>
+<text x="419" y="598" text-anchor="middle" class="body" font-size="13" fill="#2F5C51">Thanksgiving</text>
+<rect x="502" y="576" width="138" height="34" rx="17" fill="#EAF1EE"/>
+<text x="571" y="598" text-anchor="middle" class="body" font-size="13" fill="#2F5C51">Supplication</text>
+
+<rect x="40" y="636" width="600" height="48" rx="10" fill="#2F5C51"/>
+<text x="340" y="666" text-anchor="middle" class="disp" font-size="22" font-style="italic" font-weight="500" fill="#FAF6EC">No feeds. No noise. Just you and God.</text>
+</svg>
