@@ -2,6 +2,7 @@
 
 import AnimatedSection from "@/components/AnimatedSection";
 import ConsultingAccordion from "@/components/ConsultingAccordion";
+import KeilaForm from "@/components/KeilaForm";
 import {
   Church,
   Brain,
@@ -122,6 +123,22 @@ export default function ConsultingSection() {
             </div>
           </AnimatedSection>
         </div>
+
+        <AnimatedSection delay={450}>
+          <div className="mx-auto mt-16 max-w-md text-center">
+            <p className="mb-6 text-sm leading-relaxed text-cream/65">
+              Not ready to talk yet? Get{" "}
+              <span className="text-gold">The Pastor&apos;s Guide to AI</span> —
+              practical, private AI for ministry, delivered to your inbox.
+            </p>
+            <KeilaForm
+              formId="nfrm_LNGLYZD3"
+              title="Get The Pastor's Guide to AI"
+              minHeight={520}
+              className="overflow-hidden rounded-xl border border-gold/25"
+            />
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
