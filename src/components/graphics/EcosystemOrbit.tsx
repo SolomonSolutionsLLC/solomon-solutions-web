@@ -26,6 +26,7 @@ export default function EcosystemOrbit({
   const [angle, setAngle] = useState(0);
   const paused = useRef(false);
   const reduced = useRef(false);
+  const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     reduced.current = window.matchMedia(
@@ -35,7 +36,9 @@ export default function EcosystemOrbit({
 
     let raf = 0;
     let last = performance.now();
+    let running = false;
     const tick = (now: number) => {
+      if (!running) return;
       const dt = now - last;
       last = now;
       if (!paused.current) {
@@ -43,8 +46,33 @@ export default function EcosystemOrbit({
       }
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const start = () => {
+      if (running) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    // Drift only while the orbit is on screen.
+    const el = svgRef.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[entries.length - 1].isIntersecting) start();
+        else stop();
+      },
+      { threshold: 0.05 }
+    );
+    if (el) io.observe(el);
+    else start();
+
+    return () => {
+      stop();
+      io.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -56,6 +84,7 @@ export default function EcosystemOrbit({
 
   return (
     <svg
+      ref={svgRef}
       viewBox="0 0 460 460"
       role="img"
       aria-label="Map of the Solomon Solutions platform ecosystem: Simply Pray, HopeStack, HeartwardChat, and The Wisdom Walk orbiting the Solomon Solutions monogram"
@@ -67,11 +96,11 @@ export default function EcosystemOrbit({
         r={R}
         fill="none"
         stroke="#c9a84c"
-        strokeOpacity="0.25"
+        strokeOpacity="0.4"
         strokeWidth="1"
         strokeDasharray="3 6"
       />
-      <circle cx={C} cy={C} r={104} fill="none" stroke="#1a1a2e" strokeOpacity="0.08" strokeWidth="1" />
+      <circle cx={C} cy={C} r={104} fill="none" stroke="#F5EFE1" strokeOpacity="0.12" strokeWidth="1" />
 
       {nodes.map((node, i) => {
         const a = ((angle + (360 / nodes.length) * i) * Math.PI) / 180;
@@ -85,8 +114,8 @@ export default function EcosystemOrbit({
               y1={C}
               x2={x}
               y2={y}
-              stroke={active ? "#b08d3a" : "#1a1a2e"}
-              strokeOpacity={active ? 0.5 : 0.07}
+              stroke={active ? "#dfc06a" : "#F5EFE1"}
+              strokeOpacity={active ? 0.7 : 0.15}
               strokeWidth="1"
             />
             <a
@@ -104,8 +133,8 @@ export default function EcosystemOrbit({
                 cy={y}
                 r={active ? 36 : 30}
                 fill="#fdfcfa"
-                stroke={active ? node.color : "#1a1a2e"}
-                strokeOpacity={active ? 1 : 0.18}
+                stroke={active ? node.color : "#F5EFE1"}
+                strokeOpacity={active ? 1 : 0.3}
                 strokeWidth={active ? 2 : 1}
                 style={{ transition: "r 250ms ease-out" }}
               />
@@ -126,7 +155,7 @@ export default function EcosystemOrbit({
         );
       })}
 
-      <circle cx={C} cy={C} r={56} fill="#faf7f0" stroke="#c9a84c" strokeOpacity="0.45" strokeWidth="1.5" />
+      <circle cx={C} cy={C} r={56} fill="#faf7f0" stroke="#c9a84c" strokeOpacity="0.6" strokeWidth="1.5" />
       <image
         href="/logo-mark.png"
         x={C - 30}
