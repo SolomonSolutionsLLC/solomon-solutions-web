@@ -2,13 +2,16 @@
 
 import AnimatedSection from "@/components/AnimatedSection";
 import ConsultingAccordion from "@/components/ConsultingAccordion";
+import KeilaForm from "@/components/KeilaForm";
+import GrainOverlay from "@/components/graphics/GrainOverlay";
+import KineticHeading from "@/components/motion/KineticHeading";
+import DrawRule from "@/components/motion/DrawRule";
 import {
   Church,
   Brain,
   Server,
   Users,
   ArrowRight,
-  CheckCircle2,
 } from "lucide-react";
 
 const focusAreas = [
@@ -49,25 +52,36 @@ export default function ConsultingSection() {
   return (
     <section
       id="consulting"
-      className="relative overflow-hidden bg-charcoal py-24 md:py-32"
+      className="relative overflow-hidden border-t-2 border-gold bg-navy-deep py-24 md:py-32"
     >
+      {/* Fine gold drafting grid, shared texture language with the hero */}
       <div
         aria-hidden="true"
-        className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-gold/[0.04] blur-[150px]"
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(201,168,76,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.55) 1px, transparent 1px)",
+          backgroundSize: "96px 96px",
+        }}
       />
+      <GrainOverlay tone="dark" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <AnimatedSection>
-          <div className="mx-auto mb-16 max-w-2xl text-center">
+          <div className="mb-16 max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
               Consulting Services
             </span>
-            <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-cream md:text-4xl lg:text-5xl">
-              Strategic Guidance for
-              <br />
-              <span className="italic text-gold">Churches &amp; Leaders</span>
-            </h2>
-            <p className="text-lg leading-relaxed text-cream/65">
+            <KineticHeading
+              as="h2"
+              className="mt-5 mb-4 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-cream md:text-4xl lg:text-5xl"
+              lines={[
+                { text: "Strategic Guidance for" },
+                { text: "Churches & Leaders" },
+              ]}
+            />
+            <DrawRule className="mb-7 h-0.5 w-24 bg-gold" />
+            <p className="text-lg leading-relaxed text-cream/70">
               For pastors, churches, and ministry leaders ready to trade
               duct-taped processes for systems that hold, and to put new
               technology to work without handing your data to someone else.
@@ -84,7 +98,7 @@ export default function ConsultingSection() {
           </AnimatedSection>
 
           <AnimatedSection delay={300} className="lg:col-span-5">
-            <div className="border border-gold/25 p-8 lg:p-10">
+            <div className="border-y-2 border-gold/60 bg-navy px-8 py-9 ring-1 ring-cream/10 lg:px-10">
               <h3 className="mb-2 font-[family-name:var(--font-display)] text-xl font-semibold text-cream">
                 What You&apos;ll Gain
               </h3>
@@ -93,16 +107,17 @@ export default function ConsultingSection() {
                 with intention.
               </p>
               <ul className="mb-9 space-y-3.5">
-                {outcomes.map((outcome) => (
+                {outcomes.map((outcome, i) => (
                   <li
                     key={outcome}
-                    className="flex items-start gap-3 text-sm text-cream/75"
+                    className="flex items-start gap-4 text-sm text-cream/75"
                   >
-                    <CheckCircle2
-                      size={16}
+                    <span
                       aria-hidden="true"
-                      className="mt-0.5 shrink-0 text-gold"
-                    />
+                      className="w-6 shrink-0 font-[family-name:var(--font-display)] text-sm font-bold leading-5 text-gold"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     {outcome}
                   </li>
                 ))}
@@ -111,7 +126,7 @@ export default function ConsultingSection() {
                 href="https://calendly.com/grace-chapel/strategy-session"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-3 bg-gold px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal transition-colors duration-300 hover:bg-gold-light"
+                className="btn-sheen inline-flex w-full items-center justify-center gap-3 bg-gold px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal transition-all duration-300 hover:bg-gold-light active:scale-[0.99]"
               >
                 Schedule a Strategy Call
                 <ArrowRight size={14} />
@@ -122,6 +137,22 @@ export default function ConsultingSection() {
             </div>
           </AnimatedSection>
         </div>
+
+        <AnimatedSection delay={450}>
+          <div className="mx-auto mt-16 max-w-md text-center">
+            <p className="mb-6 text-sm leading-relaxed text-cream/65">
+              Not ready to talk yet? Get{" "}
+              <span className="text-gold">The Pastor&apos;s Guide to AI</span>,
+              practical, private AI for ministry, delivered to your inbox.
+            </p>
+            <KeilaForm
+              formId="nfrm_LNGLYZD3"
+              title="Get The Pastor's Guide to AI"
+              minHeight={520}
+              className="overflow-hidden rounded-xl border border-gold/25 bg-navy-light"
+            />
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );

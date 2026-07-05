@@ -30,12 +30,12 @@ const services = [
 
 export default function WhatWeDoSection() {
   return (
-    <section id="what-we-do" className="bg-cream py-24 md:py-32">
+    <section id="what-we-do" className="border-t border-charcoal/10 bg-cream py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-20">
           <AnimatedSection className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-text">
                 Our Approach
               </span>
               <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl">
@@ -52,19 +52,21 @@ export default function WhatWeDoSection() {
             {services.map((service, i) => (
               <AnimatedSection key={service.label} delay={i * 120}>
                 <div className="group border-t border-charcoal/10 py-10 first:border-t-0 first:pt-0 lg:py-12">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
-                    <div className="flex shrink-0 items-baseline gap-4 sm:w-36">
-                      <span className="font-[family-name:var(--font-display)] text-3xl font-bold text-gold/50">
+                  <div className="flex flex-col gap-5 sm:flex-row sm:gap-10">
+                    <div className="flex shrink-0 items-center gap-4 sm:w-36">
+                      <span className="flex h-11 w-11 items-center justify-center bg-navy ring-1 ring-gold/40">
+                        <service.icon
+                          size={18}
+                          aria-hidden="true"
+                          className="text-gold-light transition-colors duration-300 group-hover:text-gold"
+                        />
+                      </span>
+                      <span className="font-[family-name:var(--font-display)] text-2xl font-bold text-gold-text/70">
                         {service.number}
                       </span>
-                      <service.icon
-                        size={18}
-                        aria-hidden="true"
-                        className="text-charcoal/35 transition-colors duration-300 group-hover:text-gold-dark"
-                      />
                     </div>
                     <div>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-dark">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-text">
                         {service.label}
                       </span>
                       <h3 className="mt-2 mb-3 font-[family-name:var(--font-display)] text-2xl font-semibold text-charcoal">

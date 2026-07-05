@@ -1,52 +1,35 @@
 "use client";
 
-import { useRef, useEffect, useState, ReactNode } from "react";
+import { ReactNode } from "react";
+import { motion } from "motion/react";
+import { EASE_OUT, VIEWPORT_ONCE } from "@/lib/motion";
 
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
+  /** Delay in milliseconds, kept for API compatibility with the original component. */
   delay?: number;
 }
 
+/**
+ * In-view rise/fade reveal driven by motion. Reduced-motion handling comes
+ * from the site-wide MotionConfig (transforms jump, opacity still eases), so
+ * this keeps a single render path and hydrates cleanly.
+ */
 export default function AnimatedSection({
   children,
   className = "",
   delay = 0,
 }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setVisible(true), delay);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.05, rootMargin: "50px 0px 0px 0px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [delay]);
-
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={VIEWPORT_ONCE}
+      transition={{ duration: 0.85, ease: EASE_OUT, delay: delay / 1000 }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

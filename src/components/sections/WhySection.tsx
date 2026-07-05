@@ -1,23 +1,20 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { BookOpen, Target, Crown } from "lucide-react";
+import KineticHeading from "@/components/motion/KineticHeading";
 
 const pillars = [
   {
-    icon: BookOpen,
     number: "01",
     title: "Theology Meets Technology",
     description:
       "We start with Scripture, not trends. Every tool and system we design is grounded in biblical conviction, because lasting solutions require a foundation that doesn't shift.",
   },
   {
-    icon: Target,
     number: "02",
     title: "Built for Faithfulness",
     description:
       "We help leaders steward their calling well by creating systems that serve the mission of the Church with excellence and integrity, not just efficiency.",
   },
   {
-    icon: Crown,
     number: "03",
     title: "Measured by Kingdom Impact",
     description:
@@ -31,12 +28,14 @@ export default function WhySection() {
       <div className="mx-auto max-w-7xl px-6">
         <AnimatedSection>
           <div className="mx-auto mb-20 max-w-2xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-text">
               Our Mission
             </span>
-            <h2 className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl">
-              Why We Exist
-            </h2>
+            <KineticHeading
+              as="h2"
+              className="mt-5 mb-7 font-[family-name:var(--font-display)] text-3xl font-bold leading-tight text-charcoal md:text-4xl lg:text-5xl"
+              lines={[{ text: "Why We Exist" }]}
+            />
             <p className="text-lg leading-relaxed text-warm-gray">
               Most ministry software is built by vendors who have never
               counseled a grieving member, planned a discipleship pathway, or
@@ -55,11 +54,11 @@ export default function WhySection() {
           {pillars.map((pillar, i) => (
             <AnimatedSection key={pillar.title} delay={i * 150}>
               <div className="md:px-10 lg:px-12">
-                <div className="mb-6 flex items-baseline gap-4">
-                  <span className="font-[family-name:var(--font-display)] text-4xl font-bold text-gold/60">
+                <div className="mb-6 flex items-baseline gap-3">
+                  <span className="font-[family-name:var(--font-display)] text-5xl font-bold text-navy">
                     {pillar.number}
                   </span>
-                  <pillar.icon size={20} className="text-charcoal/40" aria-hidden="true" />
+                  <span aria-hidden="true" className="h-2 w-2 bg-gold" />
                 </div>
                 <h3 className="mb-4 font-[family-name:var(--font-display)] text-xl font-semibold text-charcoal">
                   {pillar.title}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
+import MotionProvider from "@/components/MotionProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -179,7 +180,16 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
           }}
         />
-        {children}
+        <noscript>
+          {/* Motion ships entrance states as inline styles; without JS,
+              force everything visible. */}
+          <style>{`
+            [style*="opacity:0"], [style*="opacity: 0"] { opacity: 1 !important; }
+            [style*="translateY"], [style*="scaleX"] { transform: none !important; }
+            [style*="clip-path"] { clip-path: none !important; }
+          `}</style>
+        </noscript>
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

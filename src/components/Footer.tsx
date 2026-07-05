@@ -20,7 +20,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal text-cream/60">
+    <footer className="border-t border-cream/10 bg-navy text-cream/65">
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8">
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Brand */}
@@ -55,7 +55,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm transition-colors duration-300 hover:text-gold"
+                      className="text-sm transition-colors duration-300 hover:text-gold-light"
                       {...(link.href.startsWith("http")
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
@@ -69,7 +69,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 md:flex-row">
           <p className="text-xs">
             &copy; {new Date().getFullYear()} Solomon Solutions LLC. All rights
             reserved.
