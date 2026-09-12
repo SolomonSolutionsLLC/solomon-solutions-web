@@ -7,7 +7,7 @@ be present and verified before sending). Create a sending-only, restricted
 credential for the site; do not use an account-wide key. Keep credentials out
 of source control, screenshots, logs, and tickets.
 
-Configure the four variables in `.env.example` separately in local `.env`,
+Configure the four variables in `.env.example` separately in local `.env.local`,
 Vercel Preview, and Vercel Production. Enter values through the relevant
 secret/environment-variable UI or local secret store; never display secret
 values in command output or documentation. Use the production domain and
