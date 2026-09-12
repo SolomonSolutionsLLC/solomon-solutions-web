@@ -144,6 +144,7 @@ export default function ContactSection() {
                       minLength={2}
                       maxLength={100}
                       required
+                      disabled={status.state === "submitting"}
                       className={inputClasses}
                       placeholder="Your name"
                     />
@@ -162,6 +163,7 @@ export default function ContactSection() {
                       autoComplete="email"
                       maxLength={254}
                       required
+                      disabled={status.state === "submitting"}
                       className={inputClasses}
                       placeholder="you@church.org"
                     />
@@ -175,7 +177,12 @@ export default function ContactSection() {
                   >
                     Subject
                   </label>
-                  <select id="subject" name="subject" className={inputClasses}>
+                  <select
+                    id="subject"
+                    name="subject"
+                    disabled={status.state === "submitting"}
+                    className={inputClasses}
+                  >
                     <option>General Inquiry</option>
                     <option>Consulting Services</option>
                     <option>Simply Pray</option>
@@ -199,6 +206,7 @@ export default function ContactSection() {
                     required
                     minLength={10}
                     maxLength={4000}
+                    disabled={status.state === "submitting"}
                     className={`${inputClasses} resize-none`}
                     placeholder="How can we help?"
                   />
@@ -209,6 +217,7 @@ export default function ContactSection() {
                   autoComplete="off"
                   className="absolute -left-[10000px] h-px w-px overflow-hidden"
                   name="website"
+                  disabled={status.state === "submitting"}
                   tabIndex={-1}
                   type="text"
                 />

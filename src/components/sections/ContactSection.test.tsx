@@ -90,6 +90,41 @@ describe("ContactSection", () => {
     await screen.findByRole("button", { name: "Message Sent" });
   });
 
+  it("freezes all visible fields while a submission is pending", async () => {
+    let resolveRequest: (response: Response) => void;
+    const fetchMock = vi.fn(
+      () => new Promise<Response>((resolve) => { resolveRequest = resolve; }),
+    );
+    vi.stubGlobal("fetch", fetchMock);
+    const user = userEvent.setup();
+
+    render(<ContactSection />);
+    await completeForm(user);
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+
+    const name = screen.getByLabelText(/name/i);
+    const email = screen.getByLabelText(/email/i);
+    const subject = screen.getByLabelText(/subject/i);
+    const message = screen.getByLabelText(/message/i);
+    expect(name).toHaveProperty("disabled", true);
+    expect(email).toHaveProperty("disabled", true);
+    expect(subject).toHaveProperty("disabled", true);
+    expect(message).toHaveProperty("disabled", true);
+
+    await user.type(message, "A changed message that must not be submitted.");
+    expect(message).toHaveProperty("value", "We need help adopting AI responsibly.");
+
+    resolveRequest!(jsonResponse(201));
+    await screen.findByRole("button", { name: "Message Sent" });
+    expect(name).toHaveProperty("value", "");
+    expect(email).toHaveProperty("value", "");
+    expect(subject).toHaveProperty("value", "General Inquiry");
+    expect(message).toHaveProperty("value", "");
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body).message).toBe(
+      "We need help adopting AI responsibly.",
+    );
+  });
+
   it("announces success and resets the visible fields after a 201 response", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(jsonResponse(201)));
     const user = userEvent.setup();
