@@ -41,7 +41,12 @@ describe("parseContactSubmission", () => {
   });
 
   it("rejects CR/LF header-breaking names", () => {
-    expect(parseContactSubmission({ ...validSubmission, name: "Ada\nLovelace" })).toEqual({
+    expect(
+      parseContactSubmission({
+        ...validSubmission,
+        name: "Ada\r\nBcc: attacker@example.org",
+      }),
+    ).toEqual({
       ok: false,
     });
   });
