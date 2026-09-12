@@ -486,7 +486,7 @@ Run:
 
 ```bash
 git diff --check
-git grep -nE '(sk_live_|sk_test_|rk_live_|rk_test_|re_[A-Za-z0-9]{20,})' -- . ':!.env.example'
+git grep -nE '(s[k]_(live|test)_|r[k]_(live|test)_|r[e]_[A-Za-z0-9]{20,})' -- . ':!.env.example'
 ```
 
 Expected: the diff check exits 0 and the secret scan prints no matches.

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 /**
@@ -11,13 +11,11 @@ import Image from "next/image";
 export default function MonogramCrest({ size = 150 }: { size?: number }) {
   const frame = useRef<HTMLDivElement>(null);
   const raf = useRef<number>(0);
-  const [interactive, setInteractive] = useState(false);
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduce) return;
-    setInteractive(true);
 
     const onMove = (e: PointerEvent) => {
       cancelAnimationFrame(raf.current);
@@ -68,19 +66,17 @@ export default function MonogramCrest({ size = 150 }: { size?: number }) {
         priority
         className="select-none"
       />
-      {interactive && (
-        <div
-          data-sheen
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500"
-          style={{
-            background:
-              "radial-gradient(120px circle at 50% 50%, rgba(201,168,76,0.28), transparent 65%)",
-            backgroundSize: "200% 200%",
-            mixBlendMode: "multiply",
-          }}
-        />
-      )}
+      <div
+        data-sheen
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500"
+        style={{
+          background:
+            "radial-gradient(120px circle at 50% 50%, rgba(201,168,76,0.28), transparent 65%)",
+          backgroundSize: "200% 200%",
+          mixBlendMode: "multiply",
+        }}
+      />
     </div>
   );
 }

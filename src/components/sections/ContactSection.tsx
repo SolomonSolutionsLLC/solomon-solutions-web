@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import KineticHeading from "@/components/motion/KineticHeading";
 import { Mail, Calendar, Send, CheckCircle2 } from "lucide-react";
@@ -14,8 +14,14 @@ type FormStatus =
   | { state: "success"; message: string }
   | { state: "error"; message: string };
 
+type RetrySubmission = {
+  fingerprint: string;
+  requestId: string;
+};
+
 export default function ContactSection() {
   const [status, setStatus] = useState<FormStatus>({ state: "idle" });
+  const retrySubmission = useRef<RetrySubmission | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,15 +29,20 @@ export default function ContactSection() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const requestId = crypto.randomUUID();
-    const submission = {
-      requestId,
+    const fields = {
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
       subject: String(data.get("subject") ?? ""),
       message: String(data.get("message") ?? ""),
       website: String(data.get("website") ?? ""),
     };
+    const fingerprint = JSON.stringify(fields);
+    const requestId =
+      retrySubmission.current?.fingerprint === fingerprint
+        ? retrySubmission.current.requestId
+        : crypto.randomUUID();
+    retrySubmission.current = { fingerprint, requestId };
+    const submission = { requestId, ...fields };
 
     setStatus({ state: "submitting" });
     try {
@@ -41,9 +52,29 @@ export default function ContactSection() {
         body: JSON.stringify(submission),
       });
 
-      if (!response.ok) throw new Error("Contact delivery failed");
+      if (response.status === 400) {
+        setStatus({
+          state: "error",
+          message:
+            "Please check your name, email, subject, and message, then try again.",
+        });
+        return;
+      }
+
+      if (response.status !== 201) throw new Error("Contact delivery failed");
+
+      const result: unknown = await response.json();
+      if (
+        !result ||
+        typeof result !== "object" ||
+        !("ok" in result) ||
+        result.ok !== true
+      ) {
+        throw new Error("Contact delivery failed");
+      }
 
       form.reset();
+      retrySubmission.current = null;
       setStatus({
         state: "success",
         message: "Thanks — your message was sent. We'll reply within 24 hours.",
@@ -110,6 +141,8 @@ export default function ContactSection() {
                       name="name"
                       type="text"
                       autoComplete="name"
+                      minLength={2}
+                      maxLength={100}
                       required
                       className={inputClasses}
                       placeholder="Your name"
@@ -127,6 +160,7 @@ export default function ContactSection() {
                       name="email"
                       type="email"
                       autoComplete="email"
+                      maxLength={254}
                       required
                       className={inputClasses}
                       placeholder="you@church.org"
@@ -163,6 +197,8 @@ export default function ContactSection() {
                     name="message"
                     rows={4}
                     required
+                    minLength={10}
+                    maxLength={4000}
                     className={`${inputClasses} resize-none`}
                     placeholder="How can we help?"
                   />

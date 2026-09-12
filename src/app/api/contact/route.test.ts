@@ -19,6 +19,14 @@ function contactRequest(body: string, origin = siteOrigin) {
   });
 }
 
+function requestWithBody(body: string, headers: HeadersInit = {}) {
+  return new Request(`${siteOrigin}/api/contact`, {
+    method: "POST",
+    headers: { "content-type": "application/json", origin: siteOrigin, ...headers },
+    body,
+  });
+}
+
 describe("POST /api/contact", () => {
   it("delivers a valid same-origin inquiry and returns the generic success response", async () => {
     const sent: unknown[] = [];
@@ -98,6 +106,80 @@ describe("POST /api/contact", () => {
     const response = await handler(contactRequest("x".repeat(16 * 1024 + 1)));
 
     expect(response.status).toBe(413);
+    expect(sent).toEqual([]);
+  });
+
+  it("rejects an unambiguously oversized Content-Length before reading the stream", async () => {
+    let reads = 0;
+    const body = new ReadableStream<Uint8Array>({
+      pull(controller) {
+        reads += 1;
+        controller.enqueue(new TextEncoder().encode(JSON.stringify(validSubmission)));
+        controller.close();
+      },
+    }, { highWaterMark: 0 });
+    const request = new Request(`${siteOrigin}/api/contact`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        origin: siteOrigin,
+        "content-length": String(16 * 1024 + 1),
+      },
+      body,
+      duplex: "half",
+    });
+    const handler = createContactHandler({ siteOrigin, sendEmail: async () => undefined });
+
+    const response = await handler(request);
+
+    expect(response.status).toBe(413);
+    expect(reads).toBe(0);
+  });
+
+  it("rejects a streamed multibyte payload that exceeds the raw byte limit", async () => {
+    const sent: unknown[] = [];
+    const handler = createContactHandler({
+      siteOrigin,
+      sendEmail: async (message) => {
+        sent.push(message);
+      },
+    });
+    const response = await handler(requestWithBody("😀".repeat(4097)));
+
+    expect(response.status).toBe(413);
+    expect(sent).toEqual([]);
+  });
+
+  it("processes a valid Request without Content-Length", async () => {
+    const sent: unknown[] = [];
+    const handler = createContactHandler({
+      siteOrigin,
+      sendEmail: async (message) => {
+        sent.push(message);
+      },
+    });
+    const request = requestWithBody(JSON.stringify(validSubmission));
+
+    const response = await handler(request);
+
+    expect(request.headers.has("content-length")).toBe(false);
+    expect(response.status).toBe(201);
+    expect(sent).toHaveLength(1);
+  });
+
+  it("rejects malformed Content-Length without sending", async () => {
+    const sent: unknown[] = [];
+    const handler = createContactHandler({
+      siteOrigin,
+      sendEmail: async (message) => {
+        sent.push(message);
+      },
+    });
+    const response = await handler(
+      requestWithBody(JSON.stringify(validSubmission), { "content-length": "not-a-number" }),
+    );
+
+    expect(response.status).toBe(400);
     expect(sent).toEqual([]);
   });
 

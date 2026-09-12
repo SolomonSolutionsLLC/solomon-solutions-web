@@ -10,6 +10,13 @@ function jsonResponse(status: number) {
   });
 }
 
+function responseWithBody(status: number, body: unknown) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "content-type": "application/json" },
+  });
+}
+
 async function completeForm(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText(/name/i), "Ada Lovelace");
   await user.type(screen.getByLabelText(/email/i), "ada@example.org");
@@ -114,6 +121,74 @@ describe("ContactSection", () => {
     expect(screen.getByLabelText(/name/i)).toHaveProperty("value", "Ada Lovelace");
     expect(screen.getByLabelText(/email/i)).toHaveProperty("value", "ada@example.org");
     expect(screen.getByLabelText(/subject/i)).toHaveProperty("value", "Consulting Services");
+    expect(screen.getByLabelText(/message/i)).toHaveProperty(
+      "value",
+      "We need help adopting AI responsibly.",
+    );
+  });
+
+  it("reuses the request ID when an unchanged failed submission is retried", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(jsonResponse(503))
+      .mockResolvedValueOnce(jsonResponse(201));
+    vi.stubGlobal("fetch", fetchMock);
+    const user = userEvent.setup();
+
+    render(<ContactSection />);
+    await completeForm(user);
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+    await screen.findByRole("status");
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+    await screen.findByRole("button", { name: "Message Sent" });
+
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body).requestId).toBe(
+      JSON.parse(fetchMock.mock.calls[1][1].body).requestId,
+    );
+  });
+
+  it.each([
+    [200, { ok: false }],
+    [202, { ok: true }],
+    [204, undefined],
+  ])(
+    "preserves fields and reports a delivery error for non-contract response %i",
+    async (status, body) => {
+      vi.stubGlobal(
+        "fetch",
+        vi.fn().mockResolvedValue(
+          body === undefined ? new Response(null, { status }) : responseWithBody(status, body),
+        ),
+      );
+      const user = userEvent.setup();
+
+      render(<ContactSection />);
+      await completeForm(user);
+      await user.click(screen.getByRole("button", { name: "Send Message" }));
+
+      expect((await screen.findByRole("status")).textContent).toMatch(
+        /couldn't send your message/i,
+      );
+      expect(screen.getByLabelText(/name/i)).toHaveProperty("value", "Ada Lovelace");
+      expect(screen.getByLabelText(/message/i)).toHaveProperty(
+        "value",
+        "We need help adopting AI responsibly.",
+      );
+    },
+  );
+
+  it("maps a server validation response to actionable feedback and preserves fields", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(jsonResponse(400)));
+    const user = userEvent.setup();
+
+    render(<ContactSection />);
+    await completeForm(user);
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+
+    expect((await screen.findByRole("status")).textContent).toBe(
+      "Please check your name, email, subject, and message, then try again.",
+    );
+    expect(screen.getByLabelText(/name/i)).toHaveProperty("value", "Ada Lovelace");
     expect(screen.getByLabelText(/message/i)).toHaveProperty(
       "value",
       "We need help adopting AI responsibly.",
