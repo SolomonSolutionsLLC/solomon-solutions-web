@@ -8,21 +8,52 @@ import { Mail, Calendar, Send, CheckCircle2 } from "lucide-react";
 const inputClasses =
   "w-full border border-charcoal/15 bg-warm-white px-4 py-3.5 text-sm text-charcoal placeholder:text-warm-gray/70 transition-colors focus:border-gold-text focus:outline-none";
 
-export default function ContactSection() {
-  const [submitted, setSubmitted] = useState(false);
+type FormStatus =
+  | { kind: "idle" }
+  | { kind: "submitting" }
+  | { kind: "success"; message: string }
+  | { kind: "error"; message: string };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+export default function ContactSection() {
+  const [status, setStatus] = useState<FormStatus>({ kind: "idle" });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const subject = encodeURIComponent(
-      `${data.get("subject")} — message from ${data.get("name")}`
-    );
-    const body = encodeURIComponent(
-      `${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`
-    );
-    window.location.href = `mailto:hello@solomonsolutions.tech?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    if (status.kind === "submitting") return;
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const requestId = crypto.randomUUID();
+    const submission = {
+      requestId,
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      subject: String(data.get("subject") ?? ""),
+      message: String(data.get("message") ?? ""),
+      website: String(data.get("website") ?? ""),
+    };
+
+    setStatus({ kind: "submitting" });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submission),
+      });
+
+      if (!response.ok) throw new Error("Contact delivery failed");
+
+      form.reset();
+      setStatus({
+        kind: "success",
+        message: "Thanks — your message was sent. We'll reply within 24 hours.",
+      });
+    } catch {
+      setStatus({
+        kind: "error",
+        message: "We couldn't send your message. Please try again or email us directly.",
+      });
+    }
   };
 
   return (
@@ -137,28 +168,42 @@ export default function ContactSection() {
                   />
                 </div>
 
+                <input
+                  aria-hidden="true"
+                  autoComplete="off"
+                  className="absolute -left-[10000px] h-px w-px overflow-hidden"
+                  name="website"
+                  tabIndex={-1}
+                  type="text"
+                />
+
                 <button
                   type="submit"
-                  disabled={submitted}
-                  aria-live="polite"
+                  disabled={status.kind === "submitting" || status.kind === "success"}
                   className={`flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300 disabled:cursor-default ${
-                    submitted
+                    status.kind === "submitting" || status.kind === "success"
                       ? "bg-navy text-gold-light"
                       : "btn-sheen bg-gold text-charcoal hover:bg-gold-light"
                   }`}
                 >
-                  {submitted ? (
+                  {status.kind === "success" ? (
                     <>
                       <CheckCircle2 size={16} />
-                      Opening Your Email App
+                      Message Sent
                     </>
                   ) : (
                     <>
                       <Send size={14} />
-                      Send Message
+                      {status.kind === "submitting" ? "Sending…" : "Send Message"}
                     </>
                   )}
                 </button>
+
+                {(status.kind === "success" || status.kind === "error") && (
+                  <p aria-live="polite" role="status" className="text-sm text-warm-gray">
+                    {status.message}
+                  </p>
+                )}
               </form>
             </div>
           </AnimatedSection>
