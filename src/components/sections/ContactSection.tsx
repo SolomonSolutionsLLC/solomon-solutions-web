@@ -9,17 +9,17 @@ const inputClasses =
   "w-full border border-charcoal/15 bg-warm-white px-4 py-3.5 text-sm text-charcoal placeholder:text-warm-gray/70 transition-colors focus:border-gold-text focus:outline-none";
 
 type FormStatus =
-  | { kind: "idle" }
-  | { kind: "submitting" }
-  | { kind: "success"; message: string }
-  | { kind: "error"; message: string };
+  | { state: "idle" }
+  | { state: "submitting" }
+  | { state: "success"; message: string }
+  | { state: "error"; message: string };
 
 export default function ContactSection() {
-  const [status, setStatus] = useState<FormStatus>({ kind: "idle" });
+  const [status, setStatus] = useState<FormStatus>({ state: "idle" });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status.kind === "submitting") return;
+    if (status.state === "submitting") return;
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -33,7 +33,7 @@ export default function ContactSection() {
       website: String(data.get("website") ?? ""),
     };
 
-    setStatus({ kind: "submitting" });
+    setStatus({ state: "submitting" });
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -45,12 +45,12 @@ export default function ContactSection() {
 
       form.reset();
       setStatus({
-        kind: "success",
+        state: "success",
         message: "Thanks — your message was sent. We'll reply within 24 hours.",
       });
     } catch {
       setStatus({
-        kind: "error",
+        state: "error",
         message: "We couldn't send your message. Please try again or email us directly.",
       });
     }
@@ -179,14 +179,14 @@ export default function ContactSection() {
 
                 <button
                   type="submit"
-                  disabled={status.kind === "submitting" || status.kind === "success"}
+                  disabled={status.state === "submitting" || status.state === "success"}
                   className={`flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300 disabled:cursor-default ${
-                    status.kind === "submitting" || status.kind === "success"
+                    status.state === "submitting" || status.state === "success"
                       ? "bg-navy text-gold-light"
                       : "btn-sheen bg-gold text-charcoal hover:bg-gold-light"
                   }`}
                 >
-                  {status.kind === "success" ? (
+                  {status.state === "success" ? (
                     <>
                       <CheckCircle2 size={16} />
                       Message Sent
@@ -194,12 +194,12 @@ export default function ContactSection() {
                   ) : (
                     <>
                       <Send size={14} />
-                      {status.kind === "submitting" ? "Sending…" : "Send Message"}
+                      {status.state === "submitting" ? "Sending…" : "Send Message"}
                     </>
                   )}
                 </button>
 
-                {(status.kind === "success" || status.kind === "error") && (
+                {(status.state === "success" || status.state === "error") && (
                   <p aria-live="polite" role="status" className="text-sm text-warm-gray">
                     {status.message}
                   </p>
