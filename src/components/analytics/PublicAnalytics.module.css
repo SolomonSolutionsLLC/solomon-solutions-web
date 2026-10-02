@@ -1,0 +1,12 @@
+.root { position: fixed; bottom: 1rem; left: 1rem; right: 1rem; z-index: 150; color: #17223b; font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; pointer-events: none; }
+.panel { width: min(100%, 38rem); max-height: min(80dvh, 34rem); overflow: auto; background: #fff; border: 1px solid #697384; border-radius: 12px; box-shadow: 0 8px 35px #0002; padding: 1.25rem; pointer-events: auto; }
+.panel h2 { font: inherit; font-size: 17px; font-weight: 700; margin: 0 0 .5rem; }
+.panel p { margin: 0 0 .75rem; }
+.panel a { color: #183f71; text-decoration: underline; text-underline-offset: 3px; }
+.actions { display: flex; gap: .65rem; flex-wrap: wrap; margin-top: 1rem; }
+.actions button, .settings { font: inherit; font-weight: 600; padding: .65rem .85rem; border: 1px solid #33445d; border-radius: 6px; color: #17223b; background: #fff; cursor: pointer; min-height: 44px; }
+.actions button:hover, .settings:hover { background: #eef2f7; }
+.root button:focus-visible, .root a:focus-visible, .panel:focus-visible { outline: 3px solid #517dc5; outline-offset: 3px; }
+.settings { pointer-events: auto; box-shadow: 0 2px 10px #0002; font-size: 12px; }
+.signal { margin-top: .75rem !important; font-weight: 600; }
+@media (max-width: 480px) { .root { bottom: .5rem; left: .5rem; right: .5rem; } .panel { padding: 1rem; } .actions button { flex: 1 1 auto; } }
