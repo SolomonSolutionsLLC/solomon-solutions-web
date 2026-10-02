@@ -15,6 +15,7 @@ const footerLinks = {
   Connect: [
     { label: "Contact Us", href: "#contact" },
     { label: "Schedule a Call", href: "#contact" },
+    { label: "Website Privacy", href: "/privacy" },
   ],
 };
 

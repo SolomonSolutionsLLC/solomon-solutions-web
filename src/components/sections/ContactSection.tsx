@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import KineticHeading from "@/components/motion/KineticHeading";
 import { Mail, Calendar, Send, CheckCircle2 } from "lucide-react";
@@ -8,21 +8,83 @@ import { Mail, Calendar, Send, CheckCircle2 } from "lucide-react";
 const inputClasses =
   "w-full border border-charcoal/15 bg-warm-white px-4 py-3.5 text-sm text-charcoal placeholder:text-warm-gray/70 transition-colors focus:border-gold-text focus:outline-none";
 
-export default function ContactSection() {
-  const [submitted, setSubmitted] = useState(false);
+type FormStatus =
+  | { state: "idle" }
+  | { state: "submitting" }
+  | { state: "success"; message: string }
+  | { state: "error"; message: string };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+type RetrySubmission = {
+  fingerprint: string;
+  requestId: string;
+};
+
+export default function ContactSection() {
+  const [status, setStatus] = useState<FormStatus>({ state: "idle" });
+  const retrySubmission = useRef<RetrySubmission | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const subject = encodeURIComponent(
-      `${data.get("subject")} — message from ${data.get("name")}`
-    );
-    const body = encodeURIComponent(
-      `${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`
-    );
-    window.location.href = `mailto:hello@solomonsolutions.tech?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    if (status.state === "submitting") return;
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const fields = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      subject: String(data.get("subject") ?? ""),
+      message: String(data.get("message") ?? ""),
+      website: String(data.get("website") ?? ""),
+    };
+    const fingerprint = JSON.stringify(fields);
+    const requestId =
+      retrySubmission.current?.fingerprint === fingerprint
+        ? retrySubmission.current.requestId
+        : crypto.randomUUID();
+    retrySubmission.current = { fingerprint, requestId };
+    const submission = { requestId, ...fields };
+
+    setStatus({ state: "submitting" });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submission),
+      });
+
+      if (response.status === 400) {
+        setStatus({
+          state: "error",
+          message:
+            "Please check your name, email, subject, and message, then try again.",
+        });
+        return;
+      }
+
+      if (response.status !== 201) throw new Error("Contact delivery failed");
+
+      const result: unknown = await response.json();
+      if (
+        !result ||
+        typeof result !== "object" ||
+        !("ok" in result) ||
+        result.ok !== true
+      ) {
+        throw new Error("Contact delivery failed");
+      }
+
+      form.reset();
+      retrySubmission.current = null;
+      setStatus({
+        state: "success",
+        message: "Thanks — your message was sent. We'll reply within 24 hours.",
+      });
+    } catch {
+      setStatus({
+        state: "error",
+        message: "We couldn't send your message. Please try again or email us directly.",
+      });
+    }
   };
 
   return (
@@ -79,7 +141,10 @@ export default function ContactSection() {
                       name="name"
                       type="text"
                       autoComplete="name"
+                      minLength={2}
+                      maxLength={100}
                       required
+                      disabled={status.state === "submitting"}
                       className={inputClasses}
                       placeholder="Your name"
                     />
@@ -96,7 +161,9 @@ export default function ContactSection() {
                       name="email"
                       type="email"
                       autoComplete="email"
+                      maxLength={254}
                       required
+                      disabled={status.state === "submitting"}
                       className={inputClasses}
                       placeholder="you@church.org"
                     />
@@ -110,7 +177,12 @@ export default function ContactSection() {
                   >
                     Subject
                   </label>
-                  <select id="subject" name="subject" className={inputClasses}>
+                  <select
+                    id="subject"
+                    name="subject"
+                    disabled={status.state === "submitting"}
+                    className={inputClasses}
+                  >
                     <option>General Inquiry</option>
                     <option>Consulting Services</option>
                     <option>Simply Pray</option>
@@ -132,33 +204,51 @@ export default function ContactSection() {
                     name="message"
                     rows={4}
                     required
+                    minLength={10}
+                    maxLength={4000}
+                    disabled={status.state === "submitting"}
                     className={`${inputClasses} resize-none`}
                     placeholder="How can we help?"
                   />
                 </div>
 
+                <input
+                  aria-hidden="true"
+                  autoComplete="off"
+                  className="absolute -left-[10000px] h-px w-px overflow-hidden"
+                  name="website"
+                  disabled={status.state === "submitting"}
+                  tabIndex={-1}
+                  type="text"
+                />
+
                 <button
                   type="submit"
-                  disabled={submitted}
-                  aria-live="polite"
+                  disabled={status.state === "submitting" || status.state === "success"}
                   className={`flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300 disabled:cursor-default ${
-                    submitted
+                    status.state === "submitting" || status.state === "success"
                       ? "bg-navy text-gold-light"
                       : "btn-sheen bg-gold text-charcoal hover:bg-gold-light"
                   }`}
                 >
-                  {submitted ? (
+                  {status.state === "success" ? (
                     <>
                       <CheckCircle2 size={16} />
-                      Opening Your Email App
+                      Message Sent
                     </>
                   ) : (
                     <>
                       <Send size={14} />
-                      Send Message
+                      {status.state === "submitting" ? "Sending…" : "Send Message"}
                     </>
                   )}
                 </button>
+
+                {(status.state === "success" || status.state === "error") && (
+                  <p aria-live="polite" role="status" className="text-sm text-warm-gray">
+                    {status.message}
+                  </p>
+                )}
               </form>
             </div>
           </AnimatedSection>
