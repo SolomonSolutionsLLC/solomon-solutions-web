@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { CONSENT_LIFETIME_MS, createPublicAnalytics, encodeConsent, hasPrivacySignal, publicPage, readConsent, type AnalyticsChoice, type PublicAnalyticsConfig } from "@/lib/public-analytics";
 import styles from "./PublicAnalytics.module.css";
@@ -35,6 +35,8 @@ export function PublicAnalytics({ config }: { config: PublicAnalyticsConfig }) {
   const [sessionRecord, setSessionRecord] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const panel = useRef<HTMLElement>(null);
+  const settings = useRef<HTMLButtonElement>(null);
+  const panelId = useId();
   const record = sessionRecord ?? raw;
   const choice = readConsent(record);
   const serializedConfig = JSON.stringify(config);
@@ -42,7 +44,7 @@ export function PublicAnalytics({ config }: { config: PublicAnalyticsConfig }) {
   const eligible = mounted && (publicPage(config, window.location, pathname) !== null ||
     (config.settingsPaths?.includes(pathname) && publicPage(config, window.location, "/") !== null));
   const privacySignal = useSyncExternalStore(subscribe, () => hasPrivacySignal(window), () => false);
-  const open = eligible && (settingsOpen || (choice === null && !privacySignal));
+  const open = eligible && settingsOpen;
 
   useEffect(() => {
     controller?.track(pathname, choice);
@@ -104,26 +106,29 @@ export function PublicAnalytics({ config }: { config: PublicAnalyticsConfig }) {
     setSessionRecord(persisted ? null : nextRecord);
     window.dispatchEvent(new Event(CHANGE_EVENT));
     setSettingsOpen(false);
+    settings.current?.focus();
   }
 
   if (!eligible) return null;
   return (
     <div className={styles.root}>
-      {open ? (
-        <section ref={panel} tabIndex={-1} className={styles.panel} aria-label="Website analytics preferences">
-          <h2>Optional website analytics</h2>
-          <p>May we use Google Analytics cookies to understand visits to our public website? Google receives basic visit and device data. We do not send form entries or use analytics for advertising. You can change your choice at any time.</p>
-          <a href={config.privacyHref}>Read about website analytics</a>
-          {privacySignal && <p className={styles.signal}>Your browser’s privacy preference is keeping analytics off.</p>}
+      {open && (
+        <section id={panelId} ref={panel} tabIndex={-1} className={styles.panel} aria-label="Cookie preferences"
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              setSettingsOpen(false);
+              settings.current?.focus();
+            }
+          }}>
+          {privacySignal && <p className={styles.signal}>Your browser’s privacy preference is keeping optional cookies off.</p>}
           <div className={styles.actions}>
-            <button type="button" onClick={() => choose("rejected")}>Reject analytics</button>
-            {!privacySignal && <button type="button" onClick={() => choose("accepted")}>Accept analytics</button>}
-            {choice !== null && <button type="button" onClick={() => setSettingsOpen(false)}>Close</button>}
+            <button type="button" onClick={() => choose("rejected")}>Reject cookies</button>
+            {!privacySignal && <button type="button" onClick={() => choose("accepted")}>Accept cookies</button>}
           </div>
         </section>
-      ) : (
-        <button type="button" className={styles.settings} onClick={() => setSettingsOpen(true)}>Analytics settings</button>
       )}
+      <button ref={settings} type="button" className={styles.settings} aria-controls={open ? panelId : undefined}
+        aria-expanded={open} onClick={() => setSettingsOpen(!settingsOpen)}>Cookies</button>
     </div>
   );
 }
