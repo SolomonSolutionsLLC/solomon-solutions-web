@@ -118,7 +118,7 @@ describe("POST /api/contact", () => {
         controller.close();
       },
     }, { highWaterMark: 0 });
-    const request = new Request(`${siteOrigin}/api/contact`, {
+    const requestOptions: RequestInit & { duplex: "half" } = {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -127,7 +127,8 @@ describe("POST /api/contact", () => {
       },
       body,
       duplex: "half",
-    });
+    };
+    const request = new Request(`${siteOrigin}/api/contact`, requestOptions);
     const handler = createContactHandler({ siteOrigin, sendEmail: async () => undefined });
 
     const response = await handler(request);

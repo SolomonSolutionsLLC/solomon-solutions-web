@@ -92,7 +92,7 @@ describe("ContactSection", () => {
 
   it("freezes all visible fields while a submission is pending", async () => {
     let resolveRequest: (response: Response) => void;
-    const fetchMock = vi.fn(
+    const fetchMock = vi.fn<typeof fetch>(
       () => new Promise<Response>((resolve) => { resolveRequest = resolve; }),
     );
     vi.stubGlobal("fetch", fetchMock);
@@ -120,7 +120,10 @@ describe("ContactSection", () => {
     expect(email).toHaveProperty("value", "");
     expect(subject).toHaveProperty("value", "General Inquiry");
     expect(message).toHaveProperty("value", "");
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body).message).toBe(
+    const submittedBody = fetchMock.mock.calls[0][1]?.body;
+    expect(typeof submittedBody).toBe("string");
+    if (typeof submittedBody !== "string") throw new Error("Expected a JSON request body");
+    expect(JSON.parse(submittedBody).message).toBe(
       "We need help adopting AI responsibly.",
     );
   });
